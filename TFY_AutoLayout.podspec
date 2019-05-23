@@ -27,7 +27,7 @@ Pod::Spec.new do |spec|
 
   spec.source_files  = "TFY_AutoLayout/TFY_AutoLayout/**/*.{h,m}"
   
-  spec.xcconfig      = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include" }
+  spec.xcconfig      = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/runtime" }
   
   spec.requires_arc = true
 
