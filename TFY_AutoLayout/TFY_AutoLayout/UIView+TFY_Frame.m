@@ -122,9 +122,9 @@
     return self.frame.origin;
 }
 
--(void)setTfy_size:(CGSize)tfy_size{
+-(void)setTfy_se:(CGSize)tfy_se{
     CGRect rect = self.frame;
-    rect.size = tfy_size;
+    rect.size = tfy_se;
     self.frame = rect;
 }
 
