@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
 
 #define WS(weakSelf)  __weak __typeof(&*self)weakSelf = self;
 

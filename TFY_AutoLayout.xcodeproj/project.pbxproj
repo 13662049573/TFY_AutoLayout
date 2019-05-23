@@ -45,6 +45,7 @@
 /* Begin PBXFileReference section */
 		36241FE122962AD400AFE2B2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		36241FE322962AE000AFE2B2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		36241FE522962EFC00AFE2B2 /* TFY_AutoLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TFY_AutoLayout.h; sourceTree = "<group>"; };
 		3655DB17229551D7001CAE7B /* TFY_AutoLayout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TFY_AutoLayout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3655DB1A229551D7001CAE7B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3655DB1B229551D7001CAE7B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -171,6 +172,7 @@
 		3655DB4C22955219001CAE7B /* TFY_AutoLayout */ = {
 			isa = PBXGroup;
 			children = (
+				36241FE522962EFC00AFE2B2 /* TFY_AutoLayout.h */,
 				3655DB5022955219001CAE7B /* TFY_AutoLayoutHerder.h */,
 				3655DB5322955219001CAE7B /* UIView+TFY_Frame.h */,
 				3655DB5822955219001CAE7B /* UIView+TFY_Frame.m */,
