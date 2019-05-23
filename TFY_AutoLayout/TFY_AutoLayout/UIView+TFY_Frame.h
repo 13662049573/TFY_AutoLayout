@@ -70,7 +70,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  *  获取视图层size
  */
-@property(nonatomic, assign)CGSize tfy_size;
+@property(nonatomic, assign)CGSize tfy_se;
 
 @end
 

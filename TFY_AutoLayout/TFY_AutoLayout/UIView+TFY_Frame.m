@@ -127,7 +127,9 @@
     rect.size = tfy_size;
     self.frame = rect;
 }
--(CGSize)tfy_size{
+
+-(CGSize)tfy_se{
     return self.frame.size;
 }
+
 @end
