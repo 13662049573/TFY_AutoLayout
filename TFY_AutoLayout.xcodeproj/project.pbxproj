@@ -171,19 +171,19 @@
 		3655DB4C22955219001CAE7B /* TFY_AutoLayout */ = {
 			isa = PBXGroup;
 			children = (
-				3655DB4D22955219001CAE7B /* UITableViewCell+TFY_AutoHeightForCell.h */,
-				3655DB4E22955219001CAE7B /* UIView+TFY_AutoLayout.m */,
-				3655DB4F22955219001CAE7B /* UILayoutGuide+TFY_AutoLayout.h */,
 				3655DB5022955219001CAE7B /* TFY_AutoLayoutHerder.h */,
-				3655DB5122955219001CAE7B /* CALayer+TFY_Frame.h */,
-				3655DB5222955219001CAE7B /* UIScrollView+TFY_HeaderScroll.h */,
 				3655DB5322955219001CAE7B /* UIView+TFY_Frame.h */,
-				3655DB5422955219001CAE7B /* UIView+TFY_AutoLayout.h */,
-				3655DB5522955219001CAE7B /* UILayoutGuide+TFY_AutoLayout.m */,
-				3655DB5622955219001CAE7B /* UITableViewCell+TFY_AutoHeightForCell.m */,
-				3655DB5722955219001CAE7B /* CALayer+TFY_Frame.m */,
 				3655DB5822955219001CAE7B /* UIView+TFY_Frame.m */,
+				3655DB5122955219001CAE7B /* CALayer+TFY_Frame.h */,
+				3655DB5722955219001CAE7B /* CALayer+TFY_Frame.m */,
+				3655DB5422955219001CAE7B /* UIView+TFY_AutoLayout.h */,
+				3655DB4E22955219001CAE7B /* UIView+TFY_AutoLayout.m */,
+				3655DB5222955219001CAE7B /* UIScrollView+TFY_HeaderScroll.h */,
 				3655DB5922955219001CAE7B /* UIScrollView+TFY_HeaderScroll.m */,
+				3655DB4F22955219001CAE7B /* UILayoutGuide+TFY_AutoLayout.h */,
+				3655DB5522955219001CAE7B /* UILayoutGuide+TFY_AutoLayout.m */,
+				3655DB4D22955219001CAE7B /* UITableViewCell+TFY_AutoHeightForCell.h */,
+				3655DB5622955219001CAE7B /* UITableViewCell+TFY_AutoHeightForCell.m */,
 			);
 			path = TFY_AutoLayout;
 			sourceTree = "<group>";
