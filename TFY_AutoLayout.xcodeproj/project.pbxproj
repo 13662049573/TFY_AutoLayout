@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		36241FE222962AD400AFE2B2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36241FE122962AD400AFE2B2 /* Foundation.framework */; };
+		36241FE422962AE000AFE2B2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36241FE322962AE000AFE2B2 /* UIKit.framework */; };
 		3655DB1C229551D7001CAE7B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3655DB1B229551D7001CAE7B /* AppDelegate.m */; };
 		3655DB1F229551D7001CAE7B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3655DB1E229551D7001CAE7B /* ViewController.m */; };
 		3655DB22229551D7001CAE7B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3655DB20229551D7001CAE7B /* Main.storyboard */; };
@@ -41,6 +43,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		36241FE122962AD400AFE2B2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		36241FE322962AE000AFE2B2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3655DB17229551D7001CAE7B /* TFY_AutoLayout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TFY_AutoLayout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3655DB1A229551D7001CAE7B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3655DB1B229551D7001CAE7B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -77,6 +81,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36241FE422962AE000AFE2B2 /* UIKit.framework in Frameworks */,
+				36241FE222962AD400AFE2B2 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,6 +103,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		36241FE022962AD300AFE2B2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				36241FE322962AE000AFE2B2 /* UIKit.framework */,
+				36241FE122962AD400AFE2B2 /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		3655DB0E229551D7001CAE7B = {
 			isa = PBXGroup;
 			children = (
@@ -104,6 +119,7 @@
 				3655DB32229551D7001CAE7B /* TFY_AutoLayoutTests */,
 				3655DB3D229551D7001CAE7B /* TFY_AutoLayoutUITests */,
 				3655DB18229551D7001CAE7B /* Products */,
+				36241FE022962AD300AFE2B2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
