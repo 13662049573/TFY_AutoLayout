@@ -19,7 +19,7 @@ Pod::Spec.new do |spec|
   spec.source       = { :git => "https://github.com/13662049573/TFY_AutoLayout.git", :tag => spec.version}
 
 
-  spec.source_files  = "TFY_AutoLayout/TFY_AutoLayout/**/*.{h,m}"
+  spec.source_files  = "TFY_AutoLayout/TFY_AutoLayout/**/*.{h,m}","TFY_AutoLayout/TFY_AutoLayout/TFY_AutoLayout.h"
   
   spec.frameworks    = "Foundation","UIKit"
 
