@@ -7,6 +7,7 @@
 //  https://github.com/13662049573/TFY_AutoLayoutModelTools
 
 #import "UIView+TFY_AutoLayout.h"
+#import "UIView+TFY_Frame.h"
 #import <objc/runtime.h>
 
 static inline TFY_CLASS_LGUIDE * layout_guide(TFY_VIEW * view) {
@@ -3028,6 +3029,580 @@ static const int BOTTOM_LINE_TAG = TOP_LINE_TAG + 1;
   }
   #endif
   return sview;
+}
+
+
+@end
+
+@implementation TFY_CLASS_VIEW (TFY_StackViewCategory)
+
+- (void)setTfy_WidthWeight:(CGFloat)tfy_WidthWeight {
+    objc_setAssociatedObject(self, @selector(tfy_WidthWeight), @(tfy_WidthWeight), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (CGFloat)tfy_WidthWeight {
+    CGFloat weight = [objc_getAssociatedObject(self, _cmd) floatValue];
+    if (weight == 0) {
+        weight = 1;
+    }
+    return weight;
+}
+
+- (void)setTfy_HeightWeight:(CGFloat)tfy_HeightWeight {
+    objc_setAssociatedObject(self, @selector(tfy_HeightWeight), @(tfy_HeightWeight), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (CGFloat)tfy_HeightWeight {
+    CGFloat weight = [objc_getAssociatedObject(self, _cmd) floatValue];
+    if (weight == 0) {
+        weight = 1;
+    }
+    return weight;
+}
+
+@end
+
+/// 填充空白视图类
+@interface TFY_VacntView : TFY_CLASS_VIEW
+
+@end
+
+@implementation TFY_VacntView
+
+@end
+
+/// 分割线视图
+@interface TFY_StackViewLineView : TFY_CLASS_VIEW
+
+@end
+
+@implementation TFY_StackViewLineView
+
+@end
+
+@interface TFY_StackView () {
+    BOOL      _autoHeight;
+    BOOL      _autoWidth;
+    NSInteger _lastRowVacantCount;
+}
+
+@end
+
+@implementation TFY_StackView
+
+- (void)setTfy_WidthWeight:(CGFloat)tfy_WidthWeight {
+    objc_setAssociatedObject(self, @selector(tfy_WidthWeight), @(tfy_WidthWeight), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (void)setTfy_ElementHeightWidthRatio:(CGFloat)tfy_ElementHeightWidthRatio {
+    _tfy_ElementHeightWidthRatio = tfy_ElementHeightWidthRatio;
+    _tfy_ElementWidthHeightRatio = 0;
+}
+
+- (void)setTfy_ElementWidthHeightRatio:(CGFloat)tfy_ElementWidthHeightRatio {
+    _tfy_ElementWidthHeightRatio = tfy_ElementWidthHeightRatio;
+    _tfy_ElementHeightWidthRatio = 0;
+}
+
+- (NSInteger)tfy_SubViewCount {
+    return self.tfy_Subviews.count;
+}
+
+- (NSInteger)tfy_Column {
+    return MAX(_tfy_Column, 1);
+}
+
+- (void)tfy_AutoHeight {
+    [super tfy_AutoHeight];
+    _autoHeight = YES;
+}
+
+- (HeightAuto)tfy_HeightAuto {
+    _autoHeight = YES;
+    WS(mySelf);
+    return ^() {
+        [super tfy_AutoHeight];
+        return mySelf;
+    };
+}
+
+- (void)tfy_AutoWidth {
+    [super tfy_AutoWidth];
+    _autoWidth = YES;
+}
+
+- (WidthAuto)tfy_WidthAuto {
+    _autoWidth = YES;
+    WS(mySelf);
+    return ^() {
+        [super tfy_AutoWidth];
+        return mySelf;
+    };
+}
+
+- (NSArray<TFY_CLASS_VIEW *> *)tfy_Subviews {
+    NSMutableArray * subViews = [NSMutableArray array];
+    [self.subviews enumerateObjectsUsingBlock:^(__kindof TFY_CLASS_VIEW * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (![obj isKindOfClass:TFY_VacntView.self] &&
+            ![obj isKindOfClass:TFY_StackViewLineView.self]) {
+            [subViews addObject:obj];
+        }
+    }];
+    return subViews;
+}
+
+- (void)tfy_StartLayout {
+    [self runStackLayoutEngine];
+}
+
+- (TFY_StackViewLineView *)makeLine {
+    TFY_StackViewLineView * lineView = [TFY_StackViewLineView new];
+    #if TARGET_OS_IPHONE || TARGET_OS_TV
+    if (self.tfy_SegmentLineColor) {
+        lineView.backgroundColor = self.tfy_SegmentLineColor;
+    }else {
+        lineView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1.0];
+    }
+    #elif TARGET_OS_MAC
+    if (self.tfy_SegmentLineColor) {
+        lineView.makeBackingLayer.backgroundColor = self.tfy_SegmentLineColor.CGColor;
+    }else {
+        lineView.makeBackingLayer.backgroundColor = [TFY_COLOR colorWithWhite:0.9 alpha:1.0].CGColor;
+    }
+    #endif
+    return lineView;
+}
+
+- (void)tfy_RemoveAllSubviews {
+    [self.subviews enumerateObjectsUsingBlock:^(__kindof TFY_CLASS_VIEW * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [obj removeFromSuperview];
+        [obj tfy_ResetConstraints];
+    }];
+}
+
+- (void)tfy_RemoveAllVacntView {
+    _lastRowVacantCount = 0;
+    [self.subviews enumerateObjectsUsingBlock:^(__kindof TFY_CLASS_VIEW * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [obj tfy_ResetConstraints];
+        if ([obj isKindOfClass:[TFY_VacntView class]]) {
+            [obj removeFromSuperview];
+        }
+    }];
+}
+
+- (void)removeAllSegmentLine {
+    [self.subviews enumerateObjectsUsingBlock:^(__kindof TFY_CLASS_VIEW * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [obj tfy_ResetConstraints];
+        if ([obj isKindOfClass:[TFY_StackViewLineView class]]) {
+            [obj removeFromSuperview];
+        }
+    }];
+}
+
+- (void)runStackLayoutEngine {
+    [self removeAllSegmentLine];
+    NSArray * subViews = self.subviews;
+    NSInteger count = subViews.count;
+    if (count == 0) {
+        return;
+    }
+    TFY_CLASS_VIEW * toView = nil;
+    TFY_LayoutOrientationOptions orientation = self.tfy_Orientation;
+TFY_GOTO:
+    switch (orientation) {
+        case Horizontal: {
+            for (int i = 0; i < count; i++) {
+                TFY_CLASS_VIEW * view = subViews[i];
+                TFY_CLASS_VIEW * nextView = i < count - 1 ? subViews[i + 1] : nil;
+                if (i == 0) {
+                    [view tfy_LeftSpace:self.tfy_Edge.left];
+                }else {
+                    if (self.tfy_SegmentLineSize > 0.0) {
+                        TFY_StackViewLineView * lineView = [self makeLine];
+                        [self addSubview:lineView];
+                        [lineView tfy_TopSpace:self.tfy_SegmentLinePadding];
+                        [lineView tfy_BottomSpace:self.tfy_SegmentLinePadding];
+                        [lineView tfy_LeftSpace:self.tfy_HSpace / 2.0 toView:toView];
+                        [lineView tfy_Width:self.tfy_SegmentLineSize];
+                        [view tfy_LeftSpace:self.tfy_HSpace / 2.0 toView:lineView];
+                    }else {
+                        [view tfy_LeftSpace:self.tfy_HSpace toView:toView];
+                    }
+                }
+                [view tfy_TopSpace:self.tfy_Edge.top];
+                if (nextView) {
+                    if (self.tfy_SubViewWidth > 0) {
+                        [view tfy_Width:self.tfy_SubViewWidth];
+                    }else {
+                        if (_tfy_ElementWidthHeightRatio > 0) {
+                            [view tfy_WidthHeightRatio:_tfy_ElementWidthHeightRatio];
+                        }else {
+                            if (_autoWidth) {
+                                [view tfy_AutoWidth];
+                            }else {
+                                [view tfy_WidthEqualView:nextView
+                                                   ratio:view.tfy_WidthWeight / nextView.tfy_WidthWeight];
+                            }
+                        }
+                    }
+                    if (self.tfy_SubViewHeight > 0) {
+                        [view tfy_Height:self.tfy_SubViewHeight];
+                    }else {
+                        if (_tfy_ElementHeightWidthRatio > 0) {
+                            [view tfy_HeightWidthRatio:_tfy_ElementHeightWidthRatio];
+                        }else {
+                            if (_autoHeight) {
+                                [view tfy_AutoHeight];
+                            }else {
+                                [view tfy_BottomSpace:self.tfy_Edge.bottom];
+                            }
+                        }
+                    }
+                }else {
+                    if (self.tfy_SubViewWidth > 0) {
+                        [view tfy_Width:self.tfy_SubViewWidth];
+                        if (_autoWidth) {
+                            [view tfy_RightSpace:self.tfy_Edge.right];
+                        }
+                    }else {
+                        if (_tfy_ElementWidthHeightRatio > 0) {
+                            [view tfy_WidthHeightRatio:_tfy_ElementWidthHeightRatio];
+                            if (_autoWidth) {
+                                [view tfy_RightSpace:self.tfy_Edge.right];
+                            }
+                        }else {
+                            if (_autoWidth) {
+                                [view tfy_AutoWidth];
+                            }
+                            [view tfy_RightSpace:self.tfy_Edge.right];
+                        }
+                    }
+                    if (self.tfy_SubViewHeight > 0) {
+                        [view tfy_Height:self.tfy_SubViewHeight];
+                        if (_autoHeight) {
+                            [view tfy_BottomSpace:self.tfy_Edge.bottom];
+                        }
+                    }else {
+                        if (_tfy_ElementHeightWidthRatio > 0) {
+                            [view tfy_HeightWidthRatio:_tfy_ElementHeightWidthRatio];
+                            if (_autoHeight) {
+                                [view tfy_BottomSpace:self.tfy_Edge.bottom];
+                            }
+                        }else {
+                            if (_autoHeight) {
+                                [view tfy_AutoHeight];
+                            }
+                            [view tfy_BottomSpace:self.tfy_Edge.bottom];
+                        }
+                    }
+                }
+                toView = view;
+                if ([toView isKindOfClass:[TFY_StackView class]]) {
+                    [((TFY_StackView *)toView) tfy_StartLayout];
+                }
+            }
+            break;
+        }
+        case Vertical: {
+            for (int i = 0; i < count; i++) {
+                TFY_CLASS_VIEW * view = subViews[i];
+                TFY_CLASS_VIEW * nextView = i < count - 1 ? subViews[i + 1] : nil;
+                if (i == 0) {
+                    [view tfy_TopSpace:self.tfy_Edge.top];
+                }else {
+                    if (self.tfy_SegmentLineSize > 0.0) {
+                        TFY_StackViewLineView * lineView = [self makeLine];
+                        [self addSubview:lineView];
+                        [lineView tfy_LeftSpace:self.tfy_SegmentLinePadding];
+                        [lineView tfy_RightSpace:self.tfy_SegmentLinePadding];
+                        [lineView tfy_Height:self.tfy_SegmentLineSize];
+                        [lineView tfy_TopSpace:self.tfy_VSpace / 2.0 toView:toView];
+                        [view tfy_TopSpace:self.tfy_VSpace / 2.0 toView:lineView];
+                    }else {
+                        [view tfy_TopSpace:self.tfy_VSpace toView:toView];
+                    }
+                }
+                [view tfy_LeftSpace:self.tfy_Edge.left];
+                if (nextView) {
+                    if (self.tfy_SubViewWidth > 0) {
+                        [view tfy_Width:self.tfy_SubViewWidth];
+                    }else {
+                        if (_tfy_ElementWidthHeightRatio > 0) {
+                            [view tfy_WidthHeightRatio:_tfy_ElementWidthHeightRatio];
+                        }else {
+                            if (_autoWidth) {
+                                [view tfy_AutoWidth];
+                            }else {
+                                [view tfy_RightSpace:self.tfy_Edge.right];
+                            }
+                        }
+                    }
+                    if (self.tfy_SubViewHeight > 0) {
+                        [view tfy_Height:self.tfy_SubViewHeight];
+                    }else {
+                        if (_tfy_ElementHeightWidthRatio > 0) {
+                            [view tfy_HeightWidthRatio:_tfy_ElementHeightWidthRatio];
+                        }else {
+                            if (_autoHeight) {
+                                [view tfy_AutoHeight];
+                            }else {
+                                [view tfy_HeightEqualView:nextView
+                                                    ratio:view.tfy_HeightWeight / nextView.tfy_HeightWeight];
+                            }
+                        }
+                    }
+                }else {
+                    if (self.tfy_SubViewWidth > 0) {
+                        [view tfy_Width:self.tfy_SubViewWidth];
+                        if (_autoWidth) {
+                            [view tfy_RightSpace:self.tfy_Edge.right];
+                        }
+                    }else {
+                        if (_tfy_ElementWidthHeightRatio > 0) {
+                            [view tfy_WidthHeightRatio:_tfy_ElementWidthHeightRatio];
+                            if (_autoWidth) {
+                                [view tfy_RightSpace:self.tfy_Edge.right];
+                            }
+                        }else {
+                            if (_autoWidth) {
+                                [view tfy_AutoWidth];
+                            }
+                            [view tfy_RightSpace:self.tfy_Edge.right];
+                        }
+                    }
+                    if (self.tfy_SubViewHeight > 0) {
+                        [view tfy_Height:self.tfy_SubViewHeight];
+                        if (_autoHeight) {
+                            [view tfy_BottomSpace:self.tfy_Edge.bottom];
+                        }
+                    }else {
+                        if (_tfy_ElementHeightWidthRatio > 0) {
+                            [view tfy_HeightWidthRatio:_tfy_ElementHeightWidthRatio];
+                            if (_autoHeight) {
+                                [view tfy_BottomSpace:self.tfy_Edge.bottom];
+                            }
+                        }else {
+                            if (_autoHeight) {
+                                [view tfy_AutoHeight];
+                            }
+                            [view tfy_BottomSpace:self.tfy_Edge.bottom];
+                        }
+                    }
+                }
+                toView = view;
+                if ([toView isKindOfClass:[TFY_StackView class]]) {
+                    [((TFY_StackView *)toView) tfy_StartLayout];
+                }
+            }
+            break;
+        }
+        case All: {
+            for (TFY_CLASS_VIEW * view in self.subviews) {
+                [view tfy_ResetConstraints];
+                if ([view isKindOfClass:[TFY_VacntView class]]) {
+                    [view removeFromSuperview];
+                }
+            }
+            subViews = self.subviews;
+            count = subViews.count;
+            if (self.tfy_Column < 2) {
+                orientation = Vertical;
+                goto TFY_GOTO;
+            }else {
+                NSInteger rowCount = count / self.tfy_Column + (count % self.tfy_Column == 0 ? 0 : 1);
+                NSInteger index = 0;
+                _lastRowVacantCount = rowCount * self.tfy_Column - count;
+                for (NSInteger i = 0; i < _lastRowVacantCount; i++) {
+                    TFY_VacntView * view = [TFY_VacntView new];
+                    #if TARGET_OS_IPHONE || TARGET_OS_TV
+                    view.backgroundColor = [TFY_COLOR clearColor];
+                     #elif TARGET_OS_MAC
+                    view.makeBackingLayer.backgroundColor = [TFY_COLOR clearColor].CGColor;
+                     #endif
+                    [self addSubview:view];
+                }
+                if (_lastRowVacantCount > 0) {
+                    subViews = nil;
+                    subViews = self.subviews;
+                    count = subViews.count;
+                }
+                TFY_CLASS_VIEW * frontRowView = nil;
+                TFY_CLASS_VIEW * frontColumnView = nil;
+                
+                TFY_StackViewLineView * columnLineView = nil;
+                for (NSInteger row = 0; row < rowCount; row++) {
+                    TFY_CLASS_VIEW * nextRowView = nil;
+                    TFY_CLASS_VIEW * rowView = subViews[row * self.tfy_Column];
+                    NSInteger nextRow = (row + 1) * self.tfy_Column;
+                    if (nextRow < count) {
+                        nextRowView = subViews[nextRow];
+                    }
+                    TFY_StackViewLineView * rowLineView = nil;
+                    if (self.tfy_SegmentLineSize > 0.0 && row > 0) {
+                        rowLineView = [self makeLine];
+                        [self addSubview:rowLineView];
+                        [rowLineView tfy_LeftSpace:self.tfy_SegmentLinePadding];
+                        [rowLineView tfy_RightSpace:self.tfy_SegmentLinePadding];
+                        [rowLineView tfy_Height:self.tfy_SegmentLineSize];
+                        [rowLineView tfy_TopSpace:self.tfy_VSpace / 2.0 toView:frontRowView];
+                    }
+                    for (NSInteger column = 0; column < self.tfy_Column; column++) {
+                        index = row * self.tfy_Column + column;
+                        TFY_CLASS_VIEW * view = subViews[index];
+                        TFY_CLASS_VIEW * nextColumnView = nil;
+                        if (column > 0 && self.tfy_SegmentLineSize > 0.0) {
+                            columnLineView = [self makeLine];
+                            [self addSubview:columnLineView];
+                            [columnLineView tfy_LeftSpace:self.tfy_HSpace / 2.0 toView:frontColumnView];
+                            [columnLineView tfy_TopSpace:self.tfy_SegmentLinePadding];
+                            [columnLineView tfy_BottomSpace:self.tfy_SegmentLinePadding];
+                            [columnLineView tfy_Width:self.tfy_SegmentLineSize];
+                        }
+                        if (column < self.tfy_Column - 1 && index < count) {
+                            nextColumnView = subViews[index + 1];
+                        }
+                        if (row == 0) {
+                            [view tfy_TopSpace:self.tfy_Edge.top];
+                        }else {
+                            if (rowLineView) {
+                                [view tfy_TopSpace:self.tfy_VSpace / 2.0 toView:rowLineView];
+                            }else {
+                                [view tfy_TopSpace:self.tfy_VSpace toView:frontRowView];
+                            }
+                        }
+                        if (column == 0) {
+                            [view tfy_LeftSpace:self.tfy_Edge.left];
+                        }else {
+                            if (columnLineView) {
+                                [view tfy_LeftSpace:self.tfy_HSpace / 2.0 toView:columnLineView];
+                            }else {
+                                [view tfy_LeftSpace:self.tfy_HSpace toView:frontColumnView];
+                            }
+                            
+                        }
+                        if (nextRowView) {
+                            if (self.tfy_SubViewHeight > 0) {
+                                [view tfy_Height:self.tfy_SubViewHeight];
+                            }else {
+                                if (_tfy_ElementHeightWidthRatio > 0) {
+                                    [view tfy_HeightWidthRatio:_tfy_ElementHeightWidthRatio];
+                                }else {
+                                    if (_autoHeight) {
+                                        [view tfy_AutoHeight];
+                                    }else {
+                                        [view tfy_HeightEqualView:nextRowView
+                                                            ratio:view.tfy_HeightWeight / nextRowView.tfy_HeightWeight];
+                                    }
+                                }
+                            }
+                        }else {
+                            if (self.tfy_SubViewHeight > 0) {
+                                [view tfy_Height:self.tfy_SubViewHeight];
+                            }else {
+                                if (_tfy_ElementHeightWidthRatio > 0) {
+                                    [view tfy_HeightWidthRatio:_tfy_ElementHeightWidthRatio];
+                                }else {
+                                    if (_autoHeight) {
+                                        [view tfy_AutoHeight];
+                                    }else {
+                                        [view tfy_BottomSpace:self.tfy_Edge.bottom];
+                                    }
+                                }
+                            }
+                        }
+                        if (nextColumnView) {
+                            if (self.tfy_SubViewWidth > 0) {
+                                [view tfy_Width:self.tfy_SubViewWidth];
+                            }else {
+                                if (_tfy_ElementWidthHeightRatio > 0) {
+                                    [view tfy_WidthHeightRatio:_tfy_ElementWidthHeightRatio];
+                                }else {
+                                    if (_autoWidth) {
+                                        [view tfy_AutoWidth];
+                                    }else {
+                                        [view tfy_WidthEqualView:nextColumnView
+                                                           ratio:view.tfy_WidthWeight / nextColumnView.tfy_WidthWeight];
+                                    }
+                                }
+                            }
+                        }else {
+                            if (self.tfy_SubViewWidth > 0) {
+                                [view tfy_Width:self.tfy_SubViewWidth];
+                            }else {
+                                if (_tfy_ElementWidthHeightRatio > 0) {
+                                    [view tfy_WidthHeightRatio:_tfy_ElementWidthHeightRatio];
+                                }else {
+                                    if (_autoWidth) {
+                                        [view tfy_AutoWidth];
+                                    }else {
+                                        [view tfy_RightSpace:self.tfy_Edge.right];
+                                    }
+                                }
+                            }
+                        }
+                        frontColumnView = view;
+                        if ([frontColumnView isKindOfClass:[TFY_StackView class]]) {
+                            [((TFY_StackView *)frontColumnView) tfy_StartLayout];
+                        }
+                    }
+                    frontRowView = rowView;
+                }
+                
+                if (_autoWidth) {
+                    NSInteger subCount = self.subviews.count;
+                    #if TARGET_OS_IPHONE || TARGET_OS_TV
+                    [self layoutIfNeeded];
+                     #elif TARGET_OS_MAC
+                    [self.makeBackingLayer layoutIfNeeded];
+                    #endif
+                    CGFloat rowLastColumnViewMaxX = 0;
+                    TFY_CLASS_VIEW * rowLastColumnViewMaxXView;
+                    for (NSInteger r = 0; r < subCount; r++) {
+                        NSInteger index = r;
+                        TFY_CLASS_VIEW * maxWidthView = self.subviews[index];
+                         #if TARGET_OS_IPHONE || TARGET_OS_TV
+                        [maxWidthView layoutIfNeeded];
+                         #elif TARGET_OS_MAC
+                        [maxWidthView.makeBackingLayer layoutIfNeeded];
+                         #endif
+                        if (maxWidthView.tfy_maxX > rowLastColumnViewMaxX) {
+                            rowLastColumnViewMaxX = maxWidthView.tfy_maxX;
+                            rowLastColumnViewMaxXView = maxWidthView;
+                        }
+                    }
+                    [rowLastColumnViewMaxXView tfy_RightSpace:_tfy_Edge.right];
+                }
+                
+                if (_autoHeight) {
+                    NSInteger subCount = self.subviews.count;
+                    #if TARGET_OS_IPHONE || TARGET_OS_TV
+                    [self layoutIfNeeded];
+                    #elif TARGET_OS_MAC
+                    [self.makeBackingLayer layoutIfNeeded];
+                    #endif
+                    CGFloat columnLastRowViewMaxY = 0;
+                    TFY_CLASS_VIEW * columnLastRowViewMaxYView;
+                    for (NSInteger r = 0; r < subCount; r++) {
+                        NSInteger index = r;
+                        TFY_CLASS_VIEW * maxHeightView = self.subviews[index];
+                        #if TARGET_OS_IPHONE || TARGET_OS_TV
+                        [maxHeightView layoutIfNeeded];
+                        #elif TARGET_OS_MAC
+                        [maxHeightView.makeBackingLayer layoutIfNeeded];
+                        #endif
+                        if (maxHeightView.tfy_maxY > columnLastRowViewMaxY) {
+                            columnLastRowViewMaxY = maxHeightView.tfy_maxY;
+                            columnLastRowViewMaxYView = maxHeightView;
+                        }
+                    }
+                    [columnLastRowViewMaxYView tfy_BottomSpace:_tfy_Edge.bottom];
+                }
+            }
+            break;
+        }
+        default:
+            break;
+    }
 }
 
 
