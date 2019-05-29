@@ -7,8 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3623B3072297B9AB008874B3 /* OneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3623B3062297B9AB008874B3 /* OneController.m */; };
+		3623B30A2297B9C1008874B3 /* OneTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3623B3092297B9C1008874B3 /* OneTableViewCell.m */; };
+		3623B30D2297B9D5008874B3 /* OneModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3623B30C2297B9D5008874B3 /* OneModel.m */; };
+		3623B30F2297BA3B008874B3 /* OneData.json in Resources */ = {isa = PBXBuildFile; fileRef = 3623B30E2297BA3B008874B3 /* OneData.json */; };
 		36241FE222962AD400AFE2B2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36241FE122962AD400AFE2B2 /* Foundation.framework */; };
 		36241FE422962AE000AFE2B2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36241FE322962AE000AFE2B2 /* UIKit.framework */; };
+		36268419229E4445006938A0 /* UITableView+TFY_LayoutCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36268417229E4445006938A0 /* UITableView+TFY_LayoutCell.m */; };
 		3655DB1C229551D7001CAE7B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3655DB1B229551D7001CAE7B /* AppDelegate.m */; };
 		3655DB1F229551D7001CAE7B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3655DB1E229551D7001CAE7B /* ViewController.m */; };
 		3655DB22229551D7001CAE7B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3655DB20229551D7001CAE7B /* Main.storyboard */; };
@@ -43,9 +48,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3623B3052297B9AB008874B3 /* OneController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OneController.h; sourceTree = "<group>"; };
+		3623B3062297B9AB008874B3 /* OneController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OneController.m; sourceTree = "<group>"; };
+		3623B3082297B9C1008874B3 /* OneTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OneTableViewCell.h; sourceTree = "<group>"; };
+		3623B3092297B9C1008874B3 /* OneTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OneTableViewCell.m; sourceTree = "<group>"; };
+		3623B30B2297B9D5008874B3 /* OneModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OneModel.h; sourceTree = "<group>"; };
+		3623B30C2297B9D5008874B3 /* OneModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OneModel.m; sourceTree = "<group>"; };
+		3623B30E2297BA3B008874B3 /* OneData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = OneData.json; sourceTree = "<group>"; };
 		36241FE122962AD400AFE2B2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		36241FE322962AE000AFE2B2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		36241FE522962EFC00AFE2B2 /* TFY_AutoLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TFY_AutoLayout.h; sourceTree = "<group>"; };
+		36268417229E4445006938A0 /* UITableView+TFY_LayoutCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+TFY_LayoutCell.m"; sourceTree = "<group>"; };
+		36268418229E4445006938A0 /* UITableView+TFY_LayoutCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+TFY_LayoutCell.h"; sourceTree = "<group>"; };
 		3655DB17229551D7001CAE7B /* TFY_AutoLayout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TFY_AutoLayout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3655DB1A229551D7001CAE7B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3655DB1B229551D7001CAE7B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -104,6 +118,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3623B3012297B992008874B3 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3623B3022297B992008874B3 /* Cell */,
+				3623B3032297B992008874B3 /* VC */,
+				3623B3042297B992008874B3 /* Model */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		3623B3022297B992008874B3 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				3623B3082297B9C1008874B3 /* OneTableViewCell.h */,
+				3623B3092297B9C1008874B3 /* OneTableViewCell.m */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		3623B3032297B992008874B3 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				3623B3052297B9AB008874B3 /* OneController.h */,
+				3623B3062297B9AB008874B3 /* OneController.m */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		3623B3042297B992008874B3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3623B30E2297BA3B008874B3 /* OneData.json */,
+				3623B30B2297B9D5008874B3 /* OneModel.h */,
+				3623B30C2297B9D5008874B3 /* OneModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		36241FE022962AD300AFE2B2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -137,6 +189,7 @@
 		3655DB19229551D7001CAE7B /* TFY_AutoLayout */ = {
 			isa = PBXGroup;
 			children = (
+				3623B3012297B992008874B3 /* Controller */,
 				3655DB4C22955219001CAE7B /* TFY_AutoLayout */,
 				3655DB1A229551D7001CAE7B /* AppDelegate.h */,
 				3655DB1B229551D7001CAE7B /* AppDelegate.m */,
@@ -180,6 +233,8 @@
 				3655DB5722955219001CAE7B /* CALayer+TFY_Frame.m */,
 				3655DB5422955219001CAE7B /* UIView+TFY_AutoLayout.h */,
 				3655DB4E22955219001CAE7B /* UIView+TFY_AutoLayout.m */,
+				36268418229E4445006938A0 /* UITableView+TFY_LayoutCell.h */,
+				36268417229E4445006938A0 /* UITableView+TFY_LayoutCell.m */,
 				3655DB5222955219001CAE7B /* UIScrollView+TFY_HeaderScroll.h */,
 				3655DB5922955219001CAE7B /* UIScrollView+TFY_HeaderScroll.m */,
 				3655DB4F22955219001CAE7B /* UILayoutGuide+TFY_AutoLayout.h */,
@@ -293,6 +348,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3623B30F2297BA3B008874B3 /* OneData.json in Resources */,
 				3655DB27229551D7001CAE7B /* LaunchScreen.storyboard in Resources */,
 				3655DB24229551D7001CAE7B /* Assets.xcassets in Resources */,
 				3655DB22229551D7001CAE7B /* Main.storyboard in Resources */,
@@ -320,14 +376,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3623B30D2297B9D5008874B3 /* OneModel.m in Sources */,
 				3655DB1F229551D7001CAE7B /* ViewController.m in Sources */,
 				3655DB5C22955219001CAE7B /* UITableViewCell+TFY_AutoHeightForCell.m in Sources */,
 				3655DB2A229551D7001CAE7B /* main.m in Sources */,
 				3655DB1C229551D7001CAE7B /* AppDelegate.m in Sources */,
 				3655DB5B22955219001CAE7B /* UILayoutGuide+TFY_AutoLayout.m in Sources */,
+				3623B30A2297B9C1008874B3 /* OneTableViewCell.m in Sources */,
+				36268419229E4445006938A0 /* UITableView+TFY_LayoutCell.m in Sources */,
 				3655DB5D22955219001CAE7B /* CALayer+TFY_Frame.m in Sources */,
 				3655DB5E22955219001CAE7B /* UIView+TFY_Frame.m in Sources */,
 				3655DB5F22955219001CAE7B /* UIScrollView+TFY_HeaderScroll.m in Sources */,
+				3623B3072297B9AB008874B3 /* OneController.m in Sources */,
 				3655DB5A22955219001CAE7B /* UIView+TFY_AutoLayout.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

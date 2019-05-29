@@ -15,7 +15,7 @@
 #import <TFY_AutoLayout/TFY_CellHeight/UITableViewCell+TFY_AutoHeightForCell.h>
 #import <TFY_AutoLayout/TFY_LayoutView/UIView+TFY_AutoLayout.h>
 #import <TFY_AutoLayout/UIScrollView+TFY_HeaderScroll.h>
-
+#import <TFY_AutoLayout/UITableView+TFY_LayoutCell.h>
 
 #else
 
@@ -24,7 +24,7 @@
 #import "UITableViewCell+TFY_AutoHeightForCell.h"
 #import "UIView+TFY_AutoLayout.h"
 #import "UIScrollView+TFY_HeaderScroll.h"
-
+#import "UITableView+TFY_LayoutCell.h"
 
 #endif
 

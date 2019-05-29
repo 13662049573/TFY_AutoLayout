@@ -38,6 +38,7 @@
     btn.titleLabel.font = [UIFont systemFontOfSize:16];
     [btn setTitle:@"收齐" forState:UIControlStateNormal];
     [btn setTitle:@"展开" forState:UIControlStateSelected];
+    btn.tag=1;
     [btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn];
     
@@ -78,7 +79,11 @@
     
     UIView * sublable211 = [UIView new];
     UIView * sublable212 = [UIView new];
-    UIView * sublable213 = [UIView new];
+    UIButton * sublable213 = [UIButton new];
+    [sublable213 setTitle:@"下个界面" forState:UIControlStateNormal];
+    [sublable213 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    sublable213.tag=2;
+    [sublable213 addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
     UIView * sublable214 = [UIView new];
     
     sublable211.backgroundColor = [UIColor grayColor];
@@ -96,20 +101,26 @@
 }
 
 -(void)btnClick:(UIButton *)sender{
-    sender.selected = !sender.selected;
-    if (sender.selected) {
-        /// 高度约束20并且不删除bottom约束
-        self.label.tfy_Height(60);
-    }else {
-        /// 自动高度约束并且不删除bottom约束
-        self.label.tfy_HeightAuto();
+    if (sender.tag==1) {
+        sender.selected = !sender.selected;
+        if (sender.selected) {
+            /// 高度约束20并且不删除bottom约束
+            self.label.tfy_Height(60);
+        }else {
+            /// 自动高度约束并且不删除bottom约束
+            self.label.tfy_HeightAuto();
+        }
+        
+        [UIView animateWithDuration:0.5 animations:^{
+            /*layoutIfNeeded不一定会调用layoutSubviews方法。
+             setNeedsLayout一定会调用layoutSubviews方法（有延迟，在下一轮runloop结束前）。*/
+            [self.view layoutIfNeeded];
+        }];
+    }
+    else{
+        
     }
     
-    [UIView animateWithDuration:0.5 animations:^{
-        /*layoutIfNeeded不一定会调用layoutSubviews方法。
-         setNeedsLayout一定会调用layoutSubviews方法（有延迟，在下一轮runloop结束前）。*/
-        [self.view layoutIfNeeded];
-    }];
 }
 
 @end
