@@ -10,6 +10,7 @@
 #import "TFY_AutoLayout/TFY_AutoLayout.h"
 
 
+
 @interface ViewController ()
 @property(nonatomic , strong)UIView *view1,*view2,*view3;
 @property(nonatomic , strong)UILabel *label,*label2,*label3;
