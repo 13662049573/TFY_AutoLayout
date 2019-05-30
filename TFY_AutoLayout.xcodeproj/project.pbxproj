@@ -24,7 +24,6 @@
 		3655DB3F229551D7001CAE7B /* TFY_AutoLayoutUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3655DB3E229551D7001CAE7B /* TFY_AutoLayoutUITests.m */; };
 		3655DB5A22955219001CAE7B /* UIView+TFY_AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 3655DB4E22955219001CAE7B /* UIView+TFY_AutoLayout.m */; };
 		3655DB5C22955219001CAE7B /* UITableViewCell+TFY_AutoHeightForCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3655DB5622955219001CAE7B /* UITableViewCell+TFY_AutoHeightForCell.m */; };
-		3655DB5E22955219001CAE7B /* UIView+TFY_Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 3655DB5822955219001CAE7B /* UIView+TFY_Frame.m */; };
 		3655DB5F22955219001CAE7B /* UIScrollView+TFY_HeaderScroll.m in Sources */ = {isa = PBXBuildFile; fileRef = 3655DB5922955219001CAE7B /* UIScrollView+TFY_HeaderScroll.m */; };
 /* End PBXBuildFile section */
 
@@ -78,10 +77,8 @@
 		3655DB4E22955219001CAE7B /* UIView+TFY_AutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+TFY_AutoLayout.m"; sourceTree = "<group>"; };
 		3655DB5022955219001CAE7B /* TFY_AutoLayoutHerder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFY_AutoLayoutHerder.h; sourceTree = "<group>"; };
 		3655DB5222955219001CAE7B /* UIScrollView+TFY_HeaderScroll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+TFY_HeaderScroll.h"; sourceTree = "<group>"; };
-		3655DB5322955219001CAE7B /* UIView+TFY_Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+TFY_Frame.h"; sourceTree = "<group>"; };
 		3655DB5422955219001CAE7B /* UIView+TFY_AutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+TFY_AutoLayout.h"; sourceTree = "<group>"; };
 		3655DB5622955219001CAE7B /* UITableViewCell+TFY_AutoHeightForCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+TFY_AutoHeightForCell.m"; sourceTree = "<group>"; };
-		3655DB5822955219001CAE7B /* UIView+TFY_Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+TFY_Frame.m"; sourceTree = "<group>"; };
 		3655DB5922955219001CAE7B /* UIScrollView+TFY_HeaderScroll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+TFY_HeaderScroll.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -221,8 +218,6 @@
 			children = (
 				36241FE522962EFC00AFE2B2 /* TFY_AutoLayout.h */,
 				3655DB5022955219001CAE7B /* TFY_AutoLayoutHerder.h */,
-				3655DB5322955219001CAE7B /* UIView+TFY_Frame.h */,
-				3655DB5822955219001CAE7B /* UIView+TFY_Frame.m */,
 				3655DB5422955219001CAE7B /* UIView+TFY_AutoLayout.h */,
 				3655DB4E22955219001CAE7B /* UIView+TFY_AutoLayout.m */,
 				36268418229E4445006938A0 /* UITableView+TFY_LayoutCell.h */,
@@ -373,7 +368,6 @@
 				3655DB1C229551D7001CAE7B /* AppDelegate.m in Sources */,
 				3623B30A2297B9C1008874B3 /* OneTableViewCell.m in Sources */,
 				36268419229E4445006938A0 /* UITableView+TFY_LayoutCell.m in Sources */,
-				3655DB5E22955219001CAE7B /* UIView+TFY_Frame.m in Sources */,
 				3655DB5F22955219001CAE7B /* UIScrollView+TFY_HeaderScroll.m in Sources */,
 				3623B3072297B9AB008874B3 /* OneController.m in Sources */,
 				3655DB5A22955219001CAE7B /* UIView+TFY_AutoLayout.m in Sources */,

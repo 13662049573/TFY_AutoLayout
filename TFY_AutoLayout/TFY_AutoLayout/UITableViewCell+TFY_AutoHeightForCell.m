@@ -9,7 +9,6 @@
 #import "UITableViewCell+TFY_AutoHeightForCell.h"
 #if TARGET_OS_IPHONE || TARGET_OS_TV
 #import <objc/runtime.h>
-#import "UIView+TFY_Frame.h"
 #import "UIView+TFY_AutoLayout.h"
 
 @interface UITableView (TFY_CacheCellHeight)
