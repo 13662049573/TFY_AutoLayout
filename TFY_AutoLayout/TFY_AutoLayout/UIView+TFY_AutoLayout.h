@@ -810,78 +810,95 @@ typedef TFY_CLASS_VIEW * _Nonnull (^FrameEqual)(TFY_VIEW * _Nonnull view);
 
 @interface TFY_StackView : TFY_CLASS_VIEW
 
-/// 混合布局(同时垂直和横向)每行多少列
+/**
+ *  混合布局(同时垂直和横向)每行多少列
+ */
 @property (nonatomic , assign) NSInteger tfy_Column;
-/// 容器内边距
+/**
+ *  容器内边距
+ */
 #if TARGET_OS_IPHONE || TARGET_OS_TV
 @property (nonatomic , assign) UIEdgeInsets tfy_Edge;
 #elif TARGET_OS_MAC
 @property (nonatomic , assign) NSEdgeInsets tfy_Edge;
 #endif
-/// 容器内子控件横向间隙
+/**
+ *  容器内子控件横向间隙
+ */
 @property (nonatomic , assign) CGFloat tfy_HSpace;
-/// 容器内子控件垂直间隙
+/**
+ *  容器内子控件垂直间隙
+ */
 @property (nonatomic , assign) CGFloat tfy_VSpace;
-
-/// 子元素高宽比
+/**
+ *  子元素高宽比
+ */
 @property (nonatomic , assign) CGFloat tfy_ElementHeightWidthRatio;
-
-/// 子元素宽高比
+/**
+ *  子元素宽高比
+ */
 @property (nonatomic , assign) CGFloat tfy_ElementWidthHeightRatio;
-
-/// 容器里子元素实际数量
+/**
+ *  容器里子元素实际数量
+ */
 @property (nonatomic , assign , readonly) NSInteger tfy_SubViewCount;
-
-/// 容器自动布局方向
+/**
+ *  容器自动布局方向
+ */
 @property (nonatomic , assign) TFY_LayoutOrientationOptions tfy_Orientation;
-
-/// 子视图固定宽度
+/**
+ *  子视图固定宽度
+ */
 @property (nonatomic , assign) CGFloat tfy_SubViewWidth;
-
-/// 子视图固定高度
+/**
+ *  子视图固定高度
+ */
 @property (nonatomic , assign) CGFloat tfy_SubViewHeight;
-
-/// 设置分割线尺寸
+/**
+ *  设置分割线尺寸
+ */
 @property (nonatomic , assign) CGFloat tfy_SegmentLineSize;
-/// 设置分割线内边距
+/**
+ *  设置分割线内边距
+ */
 @property (nonatomic , assign) CGFloat tfy_SegmentLinePadding;
-/// 设置分割线的颜色
+/**
+ *  设置分割线的颜色
+ */
 @property (nonatomic , strong) TFY_COLOR * tfy_SegmentLineColor;
 /************重载父类属性**************/
-/// 自动高度
+/**
+ *  自动高度
+ */
 @property (nonatomic ,copy , readonly)HeightAuto tfy_HeightAuto;
-
-/// 自动宽度
+/**
+ *  自动宽度
+ */
 @property (nonatomic ,copy , readonly)WidthAuto tfy_WidthAuto;
-
-/// 元素集合
+/**
+ *  元素集合
+ */
 @property (nonatomic, strong, readonly)NSArray<TFY_CLASS_VIEW *> * tfy_Subviews;
 
 /************重载父类方法**************/
 /**
- 自动宽度
+ * 自动宽度
  */
-
 - (void)tfy_AutoWidth;
-
 /**
- 自动高度
+ * 自动高度
  */
-
 - (void)tfy_AutoHeight;
-
 /**
- 开始进行自动布局
+ *  开始进行自动布局
  */
 - (void)tfy_StartLayout;
-
 /**
- 清除所有子视图
+ * 清除所有子视图
  */
 - (void)tfy_RemoveAllSubviews;
-
 /**
- 移除所有空白站位视图(仅仅横向垂直混合布局有效)
+ * 移除所有空白站位视图(仅仅横向垂直混合布局有效)
  */
 - (void)tfy_RemoveAllVacntView;
 @end

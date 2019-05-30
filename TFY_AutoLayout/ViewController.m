@@ -31,7 +31,7 @@
     [self.view addSubview:self.label];
     
 
-    self.label.tfy_LeftSpace(50).tfy_TopSpace(100).tfy_RightSpace(50).tfy_HeightAuto();
+    self.label.tfy_LeftSpace(50).tfy_TopSpace(64).tfy_RightSpace(50).tfy_HeightAuto();
     
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     btn.backgroundColor = [UIColor blueColor];
@@ -66,15 +66,13 @@
     
     TFY_StackView *stackView = [TFY_StackView new];
     stackView.backgroundColor = [UIColor cyanColor];
-    [self.view addSubview:stackView];
-    
-    stackView.tfy_LeftSpace(0).tfy_TopSpaceToView(10, views).tfy_RightSpace(0).tfy_Height(100);
-    
-    
     stackView.tfy_Edge = UIEdgeInsetsMake(10, 10, 10, 10);
     stackView.tfy_Orientation = Horizontal;// 自动横向垂直混合布局
     stackView.tfy_HSpace = 10;
     stackView.tfy_VSpace = 10;
+    [self.view addSubview:stackView];
+    
+    stackView.tfy_LeftSpace(0).tfy_TopSpaceToView(10, views).tfy_RightSpace(0).tfy_Height(100);
     
     
     UIView * sublable211 = [UIView new];
