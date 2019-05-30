@@ -2,7 +2,7 @@
 
 Pod::Spec.new do |spec|
   spec.name         = "TFY_AutoLayout"
-  spec.version      = "2.3.5"
+  spec.version      = "2.3.8"
   spec.summary      = "布局工具"
   spec.description  = "布局"
 
@@ -11,7 +11,7 @@ Pod::Spec.new do |spec|
   spec.license      = "MIT"
 
 
-  spec.author             = { "tianfengyou" => "420144542@qq.com" }
+  spec.author       = { "tianfengyou" => "420144542@qq.com" }
 
 
   spec.platform     = :ios, "10.0"
