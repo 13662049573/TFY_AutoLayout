@@ -445,6 +445,38 @@ TFY_propertyLayout_valueOne(TFY_CLASS_VIEW, tfy_SizeEqualView, TFY_VIEW * _Nonnu
 TFY_propertyLayout_valueOne(TFY_CLASS_VIEW, tfy_FrameEqualView, TFY_VIEW * _Nonnull view);
 
 #pragma **************************** 方法展示 ****************************
+/**
+ *  设置frame(默认相对父视图) left 左边距 top 顶边距 width 宽度 height 高度
+ */
+-(TFY_CLASS_VIEW * _Nonnull)tfy_Frame:(CGFloat)left top:(CGFloat)top width:(CGFloat)width height:(CGFloat)height;
+/**
+ * 设置frame (默认相对父视图) left 左边距 top 顶边距 right 右边距 bottom 底边距
+ */
+-(TFY_CLASS_VIEW * _Nonnull)tfy_AutoSize:(CGFloat)left top:(CGFloat)top right:(CGFloat)right bottom:(CGFloat)bottom;
+/**
+ * 设置frame left 左边距 top 顶边距 width 宽度 height 高度 toView 相对视图
+ */
+-(TFY_CLASS_VIEW * _Nonnull)tfy_Frame:(CGFloat)left top:(CGFloat)top width:(CGFloat)width height:(CGFloat)height toView:(TFY_VIEW * _Nonnull)toView;
+/**
+ * 设置frame (默认相对父视图) left 左边距 top 顶边距 right 右边距 height 高度
+ */
+-(TFY_CLASS_VIEW * _Nonnull)tfy_AutoWidth:(CGFloat)left top:(CGFloat)top right:(CGFloat)right height:(CGFloat)height;
+/**
+ * 设置frame (默认相对父视图) left 左边距 top 顶边距 width 宽度 bottom 底边距
+ */
+-(TFY_CLASS_VIEW * _Nonnull)tfy_AutoHeight:(CGFloat)left top:(CGFloat)top width:(CGFloat)width bottom:(CGFloat)bottom;
+/**
+ * 设置frame left 左边距 top 顶边距 right 右边距 bottom 底边距 toView 相对视图
+ */
+-(TFY_CLASS_VIEW * _Nonnull)tfy_AutoSize:(CGFloat)left top:(CGFloat)top right:(CGFloat)right bottom:(CGFloat)bottom toView:(TFY_VIEW * _Nonnull)toView;
+/**
+ * 设置frame left 左边距 top 顶边距 right 右边距 height 高度 toView 相对视图
+ */
+-(TFY_CLASS_VIEW * _Nonnull)tfy_AutoWidth:(CGFloat)left top:(CGFloat)top right:(CGFloat)right height:(CGFloat)height toView:(TFY_VIEW * _Nonnull)toView;
+/**
+ * 设置frame (默认相对父视图) left 左边距 top 顶边距 width 宽度 bottom 底边距
+ */
+-(TFY_CLASS_VIEW * _Nonnull)tfy_AutoHeight:(CGFloat)left top:(CGFloat)top width:(CGFloat)width bottom:(CGFloat)bottom toView:(TFY_VIEW * _Nonnull)toView;
 
 #if TARGET_OS_IPHONE || TARGET_OS_TV
 /**
