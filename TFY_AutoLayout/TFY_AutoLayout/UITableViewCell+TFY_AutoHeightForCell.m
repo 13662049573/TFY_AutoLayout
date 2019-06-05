@@ -249,7 +249,7 @@
     }
     UITableViewCell *cell = [tableView.dataSource tableView:tableView cellForRowAtIndexPath:indexPath];
     if (cell.tfy_CellTableView) {
-        [cell.tfy_CellTableView tfy_Height:cell.tfy_CellTableView.contentSize.height];
+        cell.tfy_CellTableView.tfy_Height(cell.tfy_CellTableView.contentSize.height);
     }
     CGFloat tableViewWidth = cell.tfy_TableViewWidth;
     if (tableViewWidth == 0) {
@@ -331,7 +331,7 @@
         cell = [tableView.dataSource tableView:tableView cellForRowAtIndexPath:indexPath];
     }
     if (cell.tfy_CellTableView) {
-        [cell.tfy_CellTableView tfy_Height:cell.tfy_CellTableView.contentSize.height];
+        cell.tfy_CellTableView.tfy_Height(cell.tfy_CellTableView.contentSize.height);
     }
     CGFloat tableViewWidth = cell.tfy_TableViewWidth;
     if (tableViewWidth == 0) {

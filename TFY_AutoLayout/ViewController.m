@@ -75,7 +75,6 @@
     
     stackView.tfy_LeftSpace(0).tfy_TopSpaceToView(10, views).tfy_RightSpace(0).tfy_Height(100);
     
-    
     UIView * sublable211 = [UIView new];
     UIView * sublable212 = [UIView new];
     UIButton * sublable213 = [UIButton new];
