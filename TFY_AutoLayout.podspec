@@ -2,7 +2,7 @@
 
 Pod::Spec.new do |spec|
   spec.name         = "TFY_AutoLayout"
-  spec.version      = "2.3.9"
+  spec.version      = "2.4.2"
   spec.summary      = "布局工具"
   spec.description  = "布局"
 
