@@ -8,13 +8,6 @@
 
 #import "TFY_AutoLayoutHerder.h"
 
-#define TFY_propertyLayout_valueOne(object,name,arguments) @property(nonatomic,copy,readonly)object *(^name)(arguments)
-
-#define TFY_propertyLayout_valuetwo(object,name,arguments1,arguments2) @property(nonatomic,copy,readonly)object *(^name)(arguments1,arguments2)
-
-#define TFY_propertyLayout_valuethree(object,name,arguments1,arguments2,arguments3) @property(nonatomic,copy,readonly)object *(^name)(arguments1,arguments2,arguments3)
-
-
 NS_ASSUME_NONNULL_BEGIN
 /**
  *  布局方向
@@ -106,303 +99,303 @@ typedef NS_OPTIONS(NSUInteger, TFY_LayoutOrientationOptions) {
 /**
  *  是否安全布局
  */
-TFY_propertyLayout_valueOne(TFY_CLASS_VIEW, tfy_IsSafe, BOOL IsSafe);
+TFY_propertyLayout_valueOne(tfy_IsSafe, BOOL IsSafe);
 /**
  *  当前约束小于等于
  */
-TFY_propertyLayout_valueOne(TFY_CLASS_VIEW, tfy_LeseOrEqual, void);
+TFY_propertyLayout_valueOne(tfy_LeseOrEqual, void);
 /**
  *  当前约束大于等于
  */
-TFY_propertyLayout_valueOne(TFY_CLASS_VIEW, tfy_GreaterOrEqual, void);
+TFY_propertyLayout_valueOne(tfy_GreaterOrEqual, void);
 /**
  *  重置缓存约束
  */
-TFY_propertyLayout_valueOne(TFY_CLASS_VIEW, tfy_ResetConstraint, void);
+TFY_propertyLayout_valueOne(tfy_ResetConstraint, void);
 /**
  *  清除所有约束
  */
-TFY_propertyLayout_valueOne(TFY_CLASS_VIEW, tfy_ClearLayoutAttr, void);
+TFY_propertyLayout_valueOne(tfy_ClearLayoutAttr, void);
 /**
 *   移除约束(NSLayoutAttribute attributes, ...)
 */
-TFY_propertyLayout_valuetwo(TFY_CLASS_VIEW, tfy_RemoveLayoutAttrs, NSLayoutAttribute attributes, ...);
+TFY_propertyLayout_valuetwo(tfy_RemoveLayoutAttrs, NSLayoutAttribute attributes, ...);
 /**
 *  移除约束从指定视图上(TFY_VIEW * view, NSLayoutAttribute attributes, ...)
 */
-TFY_propertyLayout_valuethree(TFY_CLASS_VIEW, tfy_RemoveFromLayoutAttrs, TFY_CLASS_VIEW * _Nonnull view,NSLayoutAttribute attributes, ...);
+TFY_propertyLayout_valuethree(tfy_RemoveFromLayoutAttrs, TFY_CLASS_VIEW * _Nonnull view,NSLayoutAttribute attributes, ...);
 
 /**
 *  移除约束从关联视图上(TFY_VIEW * toView, NSLayoutAttribute attributes, ...)
 */
-TFY_propertyLayout_valuethree(TFY_CLASS_VIEW, tfy_RemoveToLayoutAttrs, TFY_VIEW * _Nonnull toView,NSLayoutAttribute attributes, ...);
+TFY_propertyLayout_valuethree(tfy_RemoveToLayoutAttrs, TFY_VIEW * _Nonnull toView,NSLayoutAttribute attributes, ...);
 
 #pragma --------- 第一个分割点 --------
 /**
 *   设置当前约束的低优先级
 */
-TFY_propertyLayout_valueOne(TFY_CLASS_VIEW, tfy_PriorityLow, void);
+TFY_propertyLayout_valueOne(tfy_PriorityLow, void);
 /**
 *   设置当前约束的高优先级
 */
-TFY_propertyLayout_valueOne(TFY_CLASS_VIEW, tfy_PriorityHigh, void);
+TFY_propertyLayout_valueOne(tfy_PriorityHigh, void);
 
 /**
 *   设置当前约束的默认优先级
 */
-TFY_propertyLayout_valueOne(TFY_CLASS_VIEW, tfy_PriorityRequired, void);
+TFY_propertyLayout_valueOne(tfy_PriorityRequired, void);
 
 /**
 *   设置当前约束的合适优先级
 */
-TFY_propertyLayout_valueOne(TFY_CLASS_VIEW, tfy_PriorityFitting, void);
+TFY_propertyLayout_valueOne(tfy_PriorityFitting, void);
 
 /**
 *   设置当前约束的优先级 (CGFloat value): 优先级大小(0-1000)
 */
-TFY_propertyLayout_valueOne(TFY_CLASS_VIEW, tfy_Priority, CGFloat value);
+TFY_propertyLayout_valueOne(tfy_Priority, CGFloat value);
 
 #pragma --------- 第二个分割点 --------
 /**
 *  设置视图抗拉伸优先级,优先级越高越不容易被拉伸(UILayoutPriority, UILayoutConstraintAxis)
 */
-TFY_propertyLayout_valuetwo(TFY_CLASS_VIEW, tfy_ContentHuggingPriority, TFY_LayoutPriority,TFY_ConstraintAxis);
+TFY_propertyLayout_valuetwo(tfy_ContentHuggingPriority, TFY_LayoutPriority,TFY_ConstraintAxis);
 
 /**
 *  设置视图抗压缩优先级,优先级越高越不容易被压缩(UILayoutPriority, UILayoutConstraintAxis)
 */
-TFY_propertyLayout_valuetwo(TFY_CLASS_VIEW, tfy_ContentCompressionResistancePriority, TFY_LayoutPriority,TFY_ConstraintAxis);
+TFY_propertyLayout_valuetwo(tfy_ContentCompressionResistancePriority, TFY_LayoutPriority,TFY_ConstraintAxis);
 
 #pragma --------- 第三个分割点 --------
 /**
 *  与父视图左边间距(CGFloat value)
 */
-TFY_propertyLayout_valueOne(TFY_CLASS_VIEW, tfy_LeftSpace, CGFloat value);
+TFY_propertyLayout_valueOne(tfy_LeftSpace, CGFloat value);
 /**
 *  与相对视图toView左边间距(CGFloat value,TFY_VIEW * toView)
 */
-TFY_propertyLayout_valuetwo(TFY_CLASS_VIEW, tfy_LeftSpaceToView, CGFloat value,TFY_VIEW * _Nonnull toView);
+TFY_propertyLayout_valuetwo(tfy_LeftSpaceToView, CGFloat value,TFY_VIEW * _Nonnull toView);
 
 /**
 *  与视图view左边间距相等(TFY_VIEW * view)
 */
-TFY_propertyLayout_valueOne(TFY_CLASS_VIEW, tfy_LeftSpaceEqualView, TFY_VIEW * _Nonnull view);
+TFY_propertyLayout_valueOne(tfy_LeftSpaceEqualView, TFY_VIEW * _Nonnull view);
 /**
 *  与视图view左边间距相等并偏移offset(TFY_VIEW * view, CGFloat offset)
 */
-TFY_propertyLayout_valuetwo(TFY_CLASS_VIEW, tfy_LeftSpaceEqualViewOffset, TFY_VIEW * _Nonnull view,CGFloat offset);
+TFY_propertyLayout_valuetwo(tfy_LeftSpaceEqualViewOffset, TFY_VIEW * _Nonnull view,CGFloat offset);
 
 #pragma --------- 第四个分割点 --------
 /**
 *  与父视图左边间距(CGFloat value)
 */
-TFY_propertyLayout_valueOne(TFY_CLASS_VIEW, tfy_LeadingSpace, CGFloat value);
+TFY_propertyLayout_valueOne(tfy_LeadingSpace, CGFloat value);
 
 /**
 *  与相对视图toView左边间距(CGFloat value,TFY_VIEW * toView)
 */
-TFY_propertyLayout_valuetwo(TFY_CLASS_VIEW, tfy_LeadingSpaceToView, CGFloat value,TFY_VIEW * _Nonnull toView);
+TFY_propertyLayout_valuetwo(tfy_LeadingSpaceToView, CGFloat value,TFY_VIEW * _Nonnull toView);
 /**
 *  与视图view左边间距相等(TFY_VIEW * view)
 */
-TFY_propertyLayout_valueOne(TFY_CLASS_VIEW, tfy_LeadingSpaceEqualView, TFY_VIEW * _Nonnull view);
+TFY_propertyLayout_valueOne(tfy_LeadingSpaceEqualView, TFY_VIEW * _Nonnull view);
 
 /**
 *  与视图view左边间距相等并偏移offset (TFY_VIEW * view, CGFloat offset)
 */
-TFY_propertyLayout_valuetwo(TFY_CLASS_VIEW, tfy_LeadingSpaceEqualViewOffset, TFY_VIEW * _Nonnull view,CGFloat offset);
+TFY_propertyLayout_valuetwo(tfy_LeadingSpaceEqualViewOffset, TFY_VIEW * _Nonnull view,CGFloat offset);
 
 #pragma --------- 第五个分割点 --------
 /**
 *  与父视图右边间距(CGFloat value)
 */
-TFY_propertyLayout_valueOne(TFY_CLASS_VIEW, tfy_TrailingSpace, CGFloat value);
+TFY_propertyLayout_valueOne(tfy_TrailingSpace, CGFloat value);
 
 /**
 *  与相对视图toView右边间距(CGFloat value,TFY_VIEW * toView)
 */
-TFY_propertyLayout_valuetwo(TFY_CLASS_VIEW, tfy_TrailingSpaceToView, CGFloat value,TFY_VIEW * _Nonnull toView);
+TFY_propertyLayout_valuetwo(tfy_TrailingSpaceToView, CGFloat value,TFY_VIEW * _Nonnull toView);
 
 /**
 *  与视图view右边间距相等(TFY_VIEW * view)
 */
-TFY_propertyLayout_valueOne(TFY_CLASS_VIEW, tfy_TrailingSpaceEqualView, TFY_VIEW * _Nonnull view);
+TFY_propertyLayout_valueOne(tfy_TrailingSpaceEqualView, TFY_VIEW * _Nonnull view);
 
 /**
 *  与视图view右边间距相等并偏移offset(TFY_VIEW * view, CGFloat offset)
 */
-TFY_propertyLayout_valuetwo(TFY_CLASS_VIEW, tfy_TrailingSpaceEqualViewOffset, TFY_VIEW * _Nonnull view,CGFloat offset);
+TFY_propertyLayout_valuetwo(tfy_TrailingSpaceEqualViewOffset, TFY_VIEW * _Nonnull view,CGFloat offset);
 
 #pragma --------- 第六个分割点 --------
 #if (__IPHONE_OS_VERSION_MIN_REQUIRED >= 80000) || (__TV_OS_VERSION_MIN_REQUIRED >= 9000) || (__MAC_OS_X_VERSION_MIN_REQUIRED >= 101100)
 /**
 *  与父视图底边间距Y(CGFloat value)
 */
-TFY_propertyLayout_valueOne(TFY_CLASS_VIEW, tfy_FirstBaseLine, CGFloat value);
+TFY_propertyLayout_valueOne(tfy_FirstBaseLine, CGFloat value);
 
 /**
 *  与相对视图toView底边间距Y(CGFloat value,TFY_VIEW * toView)
 */
-TFY_propertyLayout_valuetwo(TFY_CLASS_VIEW, tfy_FirstBaseLineToView, CGFloat value,TFY_VIEW * _Nonnull toView);
+TFY_propertyLayout_valuetwo(tfy_FirstBaseLineToView, CGFloat value,TFY_VIEW * _Nonnull toView);
 
 /**
 *  与视图view底边间距Y相等(TFY_VIEW * view)
 */
-TFY_propertyLayout_valueOne(TFY_CLASS_VIEW, tfy_FirstBaseLineEqualView, TFY_VIEW * _Nonnull view);
+TFY_propertyLayout_valueOne(tfy_FirstBaseLineEqualView, TFY_VIEW * _Nonnull view);
 
 /**
 *  与视图view底边间距Y相等并偏移offset(TFY_VIEW * view, CGFloat offset)
 */
-TFY_propertyLayout_valuetwo(TFY_CLASS_VIEW, tfy_FirstBaseLineEqualViewOffset, TFY_VIEW * _Nonnull view,CGFloat offset);
+TFY_propertyLayout_valuetwo(tfy_FirstBaseLineEqualViewOffset, TFY_VIEW * _Nonnull view,CGFloat offset);
 
 #endif
 /**
 *   与父视图底边间距Y(CGFloat value)
 */
-TFY_propertyLayout_valueOne(TFY_CLASS_VIEW, tfy_LastBaseLine, CGFloat value);
+TFY_propertyLayout_valueOne(tfy_LastBaseLine, CGFloat value);
 
 /**
 *  与相对视图toView底边间距Y(CGFloat value,TFY_VIEW * toView)
 */
-TFY_propertyLayout_valuetwo(TFY_CLASS_VIEW, tfy_LastBaseLineToView, CGFloat value,TFY_VIEW * _Nonnull toView);
+TFY_propertyLayout_valuetwo(tfy_LastBaseLineToView, CGFloat value,TFY_VIEW * _Nonnull toView);
 
 /**
 *  与视图view底边间距Y相等(TFY_VIEW * view)
 */
-TFY_propertyLayout_valueOne(TFY_CLASS_VIEW, tfy_LastBaseLineEqualView, TFY_VIEW * _Nonnull view);
+TFY_propertyLayout_valueOne(tfy_LastBaseLineEqualView, TFY_VIEW * _Nonnull view);
 
 /**
 *  与视图view底边间距Y相等并偏移offset(TFY_VIEW * view, CGFloat offset)
 */
-TFY_propertyLayout_valuetwo(TFY_CLASS_VIEW, tfy_LastBaseLineEqualViewOffset, TFY_VIEW * _Nonnull view,CGFloat offset);
+TFY_propertyLayout_valuetwo(tfy_LastBaseLineEqualViewOffset, TFY_VIEW * _Nonnull view,CGFloat offset);
 
 /**
 *  与父视图右边间距(CGFloat value)
 */
-TFY_propertyLayout_valueOne(TFY_CLASS_VIEW, tfy_RightSpace, CGFloat value);
+TFY_propertyLayout_valueOne(tfy_RightSpace, CGFloat value);
 /**
 *  与相对视图toView右边间距(CGFloat value,TFY_VIEW * toView)
 */
-TFY_propertyLayout_valuetwo(TFY_CLASS_VIEW, tfy_RightSpaceToView, CGFloat value,TFY_VIEW * _Nonnull toView);
+TFY_propertyLayout_valuetwo(tfy_RightSpaceToView, CGFloat value,TFY_VIEW * _Nonnull toView);
 
 /**
 *  与相对视图toView右边间距相等(TFY_VIEW toView)
 */
-TFY_propertyLayout_valueOne(TFY_CLASS_VIEW, tfy_RightSpaceEqualView, TFY_VIEW * _Nonnull view);
+TFY_propertyLayout_valueOne(tfy_RightSpaceEqualView, TFY_VIEW * _Nonnull view);
 
 /**
 *   与相对视图toView右边间距相等并偏移offset(TFY_VIEW toView, CGFloat offset)
 */
-TFY_propertyLayout_valuetwo(TFY_CLASS_VIEW, tfy_RightSpaceEqualViewOffset, TFY_VIEW * _Nonnull view,CGFloat offset);
+TFY_propertyLayout_valuetwo(tfy_RightSpaceEqualViewOffset, TFY_VIEW * _Nonnull view,CGFloat offset);
 
 
 #pragma --------- 第七个分割点 --------
 /**
 *  与父视图顶边间距(CGFloat value)
 */
-TFY_propertyLayout_valueOne(TFY_CLASS_VIEW, tfy_TopSpace, CGFloat value);
+TFY_propertyLayout_valueOne(tfy_TopSpace, CGFloat value);
 
 /**
 *  与相对视图toView顶边间距(CGFloat value,TFY_VIEW * toView)
 */
-TFY_propertyLayout_valuetwo(TFY_CLASS_VIEW, tfy_TopSpaceToView, CGFloat value,TFY_VIEW * _Nonnull toView);
+TFY_propertyLayout_valuetwo(tfy_TopSpaceToView, CGFloat value,TFY_VIEW * _Nonnull toView);
 
 /**
 *  与视图view顶边间距相等(TFY_VIEW * view)
 */
-TFY_propertyLayout_valueOne(TFY_CLASS_VIEW, tfy_TopSpaceEqualView, TFY_VIEW * _Nonnull view);
+TFY_propertyLayout_valueOne(tfy_TopSpaceEqualView, TFY_VIEW * _Nonnull view);
 
 /**
 *   与视图view顶边间距相等并偏移offset(TFY_VIEW * view, CGFloat offset)
 */
-TFY_propertyLayout_valuetwo(TFY_CLASS_VIEW, tfy_TopSpaceEqualViewOffset, TFY_VIEW * _Nonnull view,CGFloat offset);
+TFY_propertyLayout_valuetwo(tfy_TopSpaceEqualViewOffset, TFY_VIEW * _Nonnull view,CGFloat offset);
 
 
 #pragma --------- 第八个分割点 --------
 /**
 *  与父视图底边间距(CGFloat value)
 */
-TFY_propertyLayout_valueOne(TFY_CLASS_VIEW, tfy_BottomSpace, CGFloat value);
+TFY_propertyLayout_valueOne(tfy_BottomSpace, CGFloat value);
 
 /**
  *  与相对视图toView底边间距(CGFloat value,TFY_VIEW * toView)
  */
-TFY_propertyLayout_valuetwo(TFY_CLASS_VIEW, tfy_BottomSpaceToView, CGFloat value,TFY_VIEW * _Nonnull toView);
+TFY_propertyLayout_valuetwo(tfy_BottomSpaceToView, CGFloat value,TFY_VIEW * _Nonnull toView);
 
 /**
  *  与相对视图toView底边间距相等(TFY_VIEW * toView)
  */
-TFY_propertyLayout_valueOne(TFY_CLASS_VIEW, tfy_BottomSpaceEqualView, TFY_VIEW * _Nonnull view);
+TFY_propertyLayout_valueOne(tfy_BottomSpaceEqualView, TFY_VIEW * _Nonnull view);
 
 /**
  *  与相对视图toView底边间距相等并偏移offset(TFY_VIEW * toView, CGFloat offset)
  */
-TFY_propertyLayout_valuetwo(TFY_CLASS_VIEW, tfy_BottomSpaceEqualViewOffset, TFY_VIEW * _Nonnull view,CGFloat offset);
+TFY_propertyLayout_valuetwo(tfy_BottomSpaceEqualViewOffset, TFY_VIEW * _Nonnull view,CGFloat offset);
 
 
 #pragma --------- 第九个分割点 --------
 /**
  *  宽度(CGFloat value)
  */
-TFY_propertyLayout_valueOne(TFY_CLASS_VIEW, tfy_Width, CGFloat value);
+TFY_propertyLayout_valueOne(tfy_Width, CGFloat value);
 
 /**
  *  宽度自动()
  */
-TFY_propertyLayout_valueOne(TFY_CLASS_VIEW, tfy_WidthAuto, void);
+TFY_propertyLayout_valueOne(tfy_WidthAuto, void);
 
 /**
  *  宽度等于视图view(TFY_VIEW * view)
  */
-TFY_propertyLayout_valueOne(TFY_CLASS_VIEW, tfy_WidthEqualView, TFY_VIEW * _Nonnull view);
+TFY_propertyLayout_valueOne(tfy_WidthEqualView, TFY_VIEW * _Nonnull view);
 
 /**
  *  宽度等于视图view 参照比例Ratio(TFY_VIEW * view ,CGFloat ratio)
  */
-TFY_propertyLayout_valuetwo(TFY_CLASS_VIEW, tfy_WidthEqualViewRatio, TFY_VIEW * _Nonnull view,CGFloat ratio);
+TFY_propertyLayout_valuetwo(tfy_WidthEqualViewRatio, TFY_VIEW * _Nonnull view,CGFloat ratio);
 
 /**
  *  视图自身宽度与高度的比(CGFloat Ratio)
  */
-TFY_propertyLayout_valueOne(TFY_CLASS_VIEW, tfy_WidthHeightRatio, CGFloat ratio);
+TFY_propertyLayout_valueOne(tfy_WidthHeightRatio, CGFloat ratio);
 
 
 #pragma --------- 第十个分割点 --------
 /**
  *  高度(CGFloat value)
  */
-TFY_propertyLayout_valueOne(TFY_CLASS_VIEW, tfy_Height, CGFloat value);
+TFY_propertyLayout_valueOne(tfy_Height, CGFloat value);
 
 /**
  *  高度自动()
  */
-TFY_propertyLayout_valueOne(TFY_CLASS_VIEW, tfy_HeightAuto, void);
+TFY_propertyLayout_valueOne(tfy_HeightAuto, void);
 
 /**
  *  高度等于视图view(TFY_VIEW * view)
  */
-TFY_propertyLayout_valueOne(TFY_CLASS_VIEW, tfy_HeightEqualView, TFY_VIEW * _Nonnull view);
+TFY_propertyLayout_valueOne(tfy_HeightEqualView, TFY_VIEW * _Nonnull view);
 /**
  *  视图自身高度与宽度的比(CGFloat Ratio)
  */
-TFY_propertyLayout_valueOne(TFY_CLASS_VIEW, tfy_HeightWidthRatio, CGFloat ratio);
+TFY_propertyLayout_valueOne(tfy_HeightWidthRatio, CGFloat ratio);
 
 /**
  *  高度等于视图view 参照比例Ratio(TFY_VIEW * view ,CGFloat ratio)
  */
-TFY_propertyLayout_valuetwo(TFY_CLASS_VIEW, tfy_HeightEqualViewRatio, TFY_VIEW * _Nonnull view,CGFloat ratio);
+TFY_propertyLayout_valuetwo(tfy_HeightEqualViewRatio, TFY_VIEW * _Nonnull view,CGFloat ratio);
 
 
 #pragma --------- 第十一个分割点 --------
 /**
  *  中心X与父视图偏移(CGFloat value)
  */
-TFY_propertyLayout_valueOne(TFY_CLASS_VIEW, tfy_CenterX, CGFloat value);
+TFY_propertyLayout_valueOne(tfy_CenterX, CGFloat value);
 
 /**
  *  中心X与视图view偏移(CGFloat value , TFY_VIEW * toView)
  */
-TFY_propertyLayout_valuetwo(TFY_CLASS_VIEW, tfy_CenterXToView,CGFloat value,TFY_VIEW * _Nonnull toView);
+TFY_propertyLayout_valuetwo(tfy_CenterXToView,CGFloat value,TFY_VIEW * _Nonnull toView);
 
 
 
@@ -410,39 +403,39 @@ TFY_propertyLayout_valuetwo(TFY_CLASS_VIEW, tfy_CenterXToView,CGFloat value,TFY_
 /**
  *  中心Y与父视图偏移(CGFloat value)
  */
-TFY_propertyLayout_valueOne(TFY_CLASS_VIEW, tfy_CenterY, CGFloat value);
+TFY_propertyLayout_valueOne(tfy_CenterY, CGFloat value);
 
 /**
  *  中心Y与视图view偏移(CGFloat value , TFY_VIEW * toView)
  */
-TFY_propertyLayout_valuetwo(TFY_CLASS_VIEW, tfy_CenterYToView,CGFloat value,TFY_VIEW * _Nonnull toView);
+TFY_propertyLayout_valuetwo(tfy_CenterYToView,CGFloat value,TFY_VIEW * _Nonnull toView);
 
 
 #pragma --------- 第十三个分割点 --------
 /**
  *  中心与父视图偏移(CGFloat value)
  */
-TFY_propertyLayout_valuetwo(TFY_CLASS_VIEW, tfy_Center, CGFloat x,CGFloat y);
+TFY_propertyLayout_valuetwo(tfy_Center, CGFloat x,CGFloat y);
 
 /**
  *  中心与视图view偏移(CGFloat value , TFY_VIEW * toView)
  */
-TFY_propertyLayout_valuetwo(TFY_CLASS_VIEW, tfy_CenterToView, CGPoint center,TFY_VIEW * _Nonnull toView);
+TFY_propertyLayout_valuetwo(tfy_CenterToView, CGPoint center,TFY_VIEW * _Nonnull toView);
 
 /**
  *  size设置(CGFloat width, CGFloat height)
  */
-TFY_propertyLayout_valuetwo(TFY_CLASS_VIEW, tfy_size, CGFloat width,CGFloat height);
+TFY_propertyLayout_valuetwo(tfy_size, CGFloat width,CGFloat height);
 
 /**
  *  size设置(TFY_VIEW * view)
  */
-TFY_propertyLayout_valueOne(TFY_CLASS_VIEW, tfy_SizeEqualView, TFY_VIEW * _Nonnull view);
+TFY_propertyLayout_valueOne(tfy_SizeEqualView, TFY_VIEW * _Nonnull view);
 
 /**
  *  frame设置(TFY_VIEW * view)
  */
-TFY_propertyLayout_valueOne(TFY_CLASS_VIEW, tfy_FrameEqualView, TFY_VIEW * _Nonnull view);
+TFY_propertyLayout_valueOne(tfy_FrameEqualView, TFY_VIEW * _Nonnull view);
 
 #pragma **************************** 方法展示 ****************************
 /**
@@ -578,11 +571,11 @@ TFY_propertyLayout_valueOne(TFY_CLASS_VIEW, tfy_FrameEqualView, TFY_VIEW * _Nonn
 /**
  *  自动高度
  */
-TFY_propertyLayout_valueOne(TFY_CLASS_VIEW, tfy_HeightAuto, void);
+TFY_propertyLayout_valueOne(tfy_HeightAuto, void);
 /**
  *  自动宽度
  */
-TFY_propertyLayout_valueOne(TFY_CLASS_VIEW, tfy_WidthAuto, void);
+TFY_propertyLayout_valueOne(tfy_WidthAuto, void);
 /**
  *  元素集合
  */
