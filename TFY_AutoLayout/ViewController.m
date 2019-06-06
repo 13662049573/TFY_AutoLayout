@@ -73,7 +73,7 @@
     stackView.tfy_VSpace = 10;
     [self.view addSubview:stackView];
     
-    stackView.tfy_LeftSpace(0).tfy_TopSpaceToView(10, views).tfy_RightSpace(0).tfy_Height(100);
+    stackView.tfy_LeftSpace(0).tfy_TopSpaceToView(10, views).tfy_RightSpace(0).tfy_Height(100).tfy_IsSafe(YES);
     
     UIView * sublable211 = [UIView new];
     UIView * sublable212 = [UIView new];
@@ -116,7 +116,7 @@
         }];
     }
     else{
-        
+        NSLog(@"按时发货发了拉横幅拉货发了哈");
     }
     
 }
