@@ -39,7 +39,7 @@
     btn.titleLabel.font = [UIFont systemFontOfSize:16];
     [btn setTitle:@"收齐" forState:UIControlStateNormal];
     [btn setTitle:@"展开" forState:UIControlStateSelected];
-    btn.tag=1;
+    btn.tag=6;
     [btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn];
     
@@ -75,31 +75,41 @@
     
     stackView.tfy_LeftSpace(0).tfy_TopSpaceToView(10, views).tfy_RightSpace(0).tfy_Height(100).tfy_IsSafe(YES);
     
-    UIView * sublable211 = [UIView new];
-    UIView * sublable212 = [UIView new];
-    UIButton * sublable213 = [UIButton new];
-    [sublable213 setTitle:@"下个界面" forState:UIControlStateNormal];
-    [sublable213 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    sublable213.tag=2;
-    [sublable213 addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
-    UIView * sublable214 = [UIView new];
     
-    sublable211.backgroundColor = [UIColor grayColor];
-    sublable212.backgroundColor = [UIColor magentaColor];
-    sublable213.backgroundColor = [UIColor redColor];
-    sublable214.backgroundColor = [UIColor yellowColor];
+    NSArray *arr2 = @[@"第一个",@"第二个",@"第三个",@"第四个",@"第五个"];
     
-    // 添加子元素到容器视图
-    [stackView addSubview:sublable211];
-    [stackView addSubview:sublable212];
-    [stackView addSubview:sublable213];
-    [stackView addSubview:sublable214];
+    [arr2 enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+       
+        UIButton * sublable213 = [UIButton new];
+        [sublable213 setTitle:obj forState:UIControlStateNormal];
+        [sublable213 setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
+        sublable213.tag = idx;
+        sublable213.titleLabel.font = [UIFont systemFontOfSize:15];
+        [sublable213 addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
+        [stackView addSubview:sublable213];
+        if (idx==0) {
+            sublable213.backgroundColor = [UIColor redColor];
+        }
+        else if (idx==1){
+            sublable213.backgroundColor = [UIColor yellowColor];
+        }
+        else if (idx==2){
+            sublable213.backgroundColor = [UIColor blueColor];
+        }
+        else if (idx==3){
+            sublable213.backgroundColor = [UIColor purpleColor];
+        }
+        else if (idx==4){
+            sublable213.backgroundColor = [UIColor whiteColor];
+        }
+        
+    }];
     
     [stackView tfy_StartLayout];//使用这个最后需要调用这个方法才可以运行。
 }
 
 -(void)btnClick:(UIButton *)sender{
-    if (sender.tag==1) {
+    if (sender.tag==6) {
         sender.selected = !sender.selected;
         if (sender.selected) {
             /// 高度约束20并且不删除bottom约束
