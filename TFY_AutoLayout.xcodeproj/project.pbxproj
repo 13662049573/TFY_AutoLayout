@@ -24,7 +24,6 @@
 		3655DB3F229551D7001CAE7B /* TFY_AutoLayoutUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3655DB3E229551D7001CAE7B /* TFY_AutoLayoutUITests.m */; };
 		3655DB5A22955219001CAE7B /* UIView+TFY_AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 3655DB4E22955219001CAE7B /* UIView+TFY_AutoLayout.m */; };
 		3655DB5C22955219001CAE7B /* UITableViewCell+TFY_AutoHeightForCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3655DB5622955219001CAE7B /* UITableViewCell+TFY_AutoHeightForCell.m */; };
-		3655DB5F22955219001CAE7B /* UIScrollView+TFY_HeaderScroll.m in Sources */ = {isa = PBXBuildFile; fileRef = 3655DB5922955219001CAE7B /* UIScrollView+TFY_HeaderScroll.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,10 +75,8 @@
 		3655DB4D22955219001CAE7B /* UITableViewCell+TFY_AutoHeightForCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+TFY_AutoHeightForCell.h"; sourceTree = "<group>"; };
 		3655DB4E22955219001CAE7B /* UIView+TFY_AutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+TFY_AutoLayout.m"; sourceTree = "<group>"; };
 		3655DB5022955219001CAE7B /* TFY_AutoLayoutHerder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFY_AutoLayoutHerder.h; sourceTree = "<group>"; };
-		3655DB5222955219001CAE7B /* UIScrollView+TFY_HeaderScroll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+TFY_HeaderScroll.h"; sourceTree = "<group>"; };
 		3655DB5422955219001CAE7B /* UIView+TFY_AutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+TFY_AutoLayout.h"; sourceTree = "<group>"; };
 		3655DB5622955219001CAE7B /* UITableViewCell+TFY_AutoHeightForCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+TFY_AutoHeightForCell.m"; sourceTree = "<group>"; };
-		3655DB5922955219001CAE7B /* UIScrollView+TFY_HeaderScroll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+TFY_HeaderScroll.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -222,8 +219,6 @@
 				3655DB4E22955219001CAE7B /* UIView+TFY_AutoLayout.m */,
 				36268418229E4445006938A0 /* UITableView+TFY_LayoutCell.h */,
 				36268417229E4445006938A0 /* UITableView+TFY_LayoutCell.m */,
-				3655DB5222955219001CAE7B /* UIScrollView+TFY_HeaderScroll.h */,
-				3655DB5922955219001CAE7B /* UIScrollView+TFY_HeaderScroll.m */,
 				3655DB4D22955219001CAE7B /* UITableViewCell+TFY_AutoHeightForCell.h */,
 				3655DB5622955219001CAE7B /* UITableViewCell+TFY_AutoHeightForCell.m */,
 			);
@@ -368,7 +363,6 @@
 				3655DB1C229551D7001CAE7B /* AppDelegate.m in Sources */,
 				3623B30A2297B9C1008874B3 /* OneTableViewCell.m in Sources */,
 				36268419229E4445006938A0 /* UITableView+TFY_LayoutCell.m in Sources */,
-				3655DB5F22955219001CAE7B /* UIScrollView+TFY_HeaderScroll.m in Sources */,
 				3623B3072297B9AB008874B3 /* OneController.m in Sources */,
 				3655DB5A22955219001CAE7B /* UIView+TFY_AutoLayout.m in Sources */,
 			);
@@ -476,7 +470,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.3;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -529,7 +523,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

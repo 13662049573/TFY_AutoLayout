@@ -361,8 +361,6 @@ static inline TFY_CLASS_VIEW * owningView(TFY_VIEW * view) {
     };
 }
 
-
-
 -(TFY_CLASS_VIEW *(^)(TFY_LayoutPriority priority,TFY_ConstraintAxis axis))tfy_ContentHuggingPriority{
     WS(mySelf);
     return ^(TFY_LayoutPriority priority,TFY_ConstraintAxis axis){
