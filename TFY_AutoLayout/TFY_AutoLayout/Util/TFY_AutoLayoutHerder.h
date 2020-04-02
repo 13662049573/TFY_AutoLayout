@@ -21,7 +21,6 @@
 #define TFY_ConstraintAxis UILayoutConstraintAxis
 #define TFY_COLOR UIColor
 
-
 #elif TARGET_OS_MAC
 
 #import <AppKit/AppKit.h>
@@ -36,8 +35,3 @@
 #endif
 
 
-#define TFY_propertyLayout_valueOne(name,arguments) @property(nonatomic,copy,readonly)TFY_CLASS_VIEW *(^name)(arguments)
-
-#define TFY_propertyLayout_valuetwo(name,arguments1,arguments2) @property(nonatomic,copy,readonly)TFY_CLASS_VIEW *(^name)(arguments1,arguments2)
-
-#define TFY_propertyLayout_valuethree(name,arguments1,arguments2,arguments3) @property(nonatomic,copy,readonly)TFY_CLASS_VIEW *(^name)(arguments1,arguments2,arguments3)

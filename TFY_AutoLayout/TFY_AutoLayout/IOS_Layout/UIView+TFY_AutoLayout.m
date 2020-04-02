@@ -7,6 +7,7 @@
 //  https://github.com/13662049573/TFY_AutoLayoutModelTools
 
 #import "UIView+TFY_AutoLayout.h"
+#import "UIView+TFY_Frame.h"
 #import <objc/runtime.h>
 
 static inline TFY_CLASS_LGUIDE * layout_guide(TFY_VIEW * view) {
@@ -51,173 +52,9 @@ static inline TFY_CLASS_VIEW * owningView(TFY_VIEW * view) {
 @implementation TFY_Data
 @end
 
-@implementation TFY_CLASS_VIEW (TFY_Frame)
-
-#if TARGET_OS_IPHONE || TARGET_OS_TV
--(CGFloat)tfy_swidth{
-    return CGRectGetWidth([UIScreen mainScreen].bounds);
-}
-
--(CGFloat)tfy_sheight{
-    return CGRectGetHeight([UIScreen mainScreen].bounds);
-}
-#elif TARGET_OS_MAC
-- (CGFloat)tfy_swidth {
-    return CGRectGetWidth([NSScreen mainScreen].frame);
-}
-
-- (CGFloat)tfy_sheight {
-    return CGRectGetHeight([NSScreen mainScreen].frame);
-}
-#endif
-
--(void)setTfy_width:(CGFloat)tfy_width{
-    CGRect rect = self.frame;
-    rect.size.width = tfy_width;
-    self.frame = rect;
-}
-- (CGFloat)tfy_width{
-    return CGRectGetWidth(self.frame);
-}
-
--(void)setTfy_height:(CGFloat)tfy_height{
-    CGRect rect = self.frame;
-    rect.size.height = tfy_height;
-    self.frame = rect;
-}
-- (CGFloat)tfy_height{
-    return CGRectGetHeight(self.frame);
-}
-
-- (void)setTfy_x:(CGFloat)tfy_x{
-    CGRect rect = self.frame;
-    rect.origin.x = tfy_x;
-    self.frame = rect;
-}
--(CGFloat)tfy_x{
-    return CGRectGetMinX(self.frame);
-}
-
--(void)setTfy_y:(CGFloat)tfy_y{
-    CGRect rect = self.frame;
-    rect.origin.y = tfy_y;
-    self.frame = rect;
-}
--(CGFloat)tfy_y{
-    return CGRectGetMinY(self.frame);
-}
-
--(void)setTfy_maxX:(CGFloat)tfy_maxX{
-    self.tfy_width = tfy_maxX - self.tfy_x;
-}
-- (CGFloat)tfy_maxX{
-    return CGRectGetMaxX(self.frame);
-}
-
--(void)setTfy_maxY:(CGFloat)tfy_maxY{
-    self.tfy_width = tfy_maxY - self.tfy_y;
-}
--(CGFloat)tfy_maxY{
-    return CGRectGetMaxY(self.frame);
-}
-
--(void)setTfy_midX:(CGFloat)tfy_midX{
-    self.tfy_width = tfy_midX * 2;
-}
--(CGFloat)tfy_midX{
-    return CGRectGetMinX(self.frame) + CGRectGetWidth(self.frame) / 2;
-}
-
--(void)setTfy_midY:(CGFloat)tfy_midY{
-    self.tfy_height = tfy_midY * 2;
-}
--(CGFloat)tfy_midY{
-    return CGRectGetMinY(self.frame) + CGRectGetHeight(self.frame) / 2;
-}
-
--(void)setTfy_left:(CGFloat)tfy_left{
-    CGFloat y = self.frame.origin.y;
-    CGFloat width = self.frame.size.width;
-    CGFloat height = self.frame.size.height;
-    self.frame = CGRectMake(tfy_left, y, width, height);
-}
--(CGFloat)tfy_left{
-    return self.frame.origin.x;
-}
-
--(void)setTfy_top:(CGFloat)tfy_top{
-    CGFloat x = self.frame.origin.x;
-    CGFloat width = self.frame.size.width;
-    CGFloat height = self.frame.size.height;
-    self.frame = CGRectMake(x, tfy_top, width, height);
-}
--(CGFloat)tfy_top{
-    return self.frame.origin.y;
-}
-
--(void)setTfy_right:(CGFloat)tfy_right{
-    CGRect frame = self.frame;
-    frame.origin.x = tfy_right - frame.size.width;
-    self.frame = frame;
-}
--(CGFloat)tfy_right{
-    return self.frame.origin.x + self.frame.size.width;
-}
-
--(void)setTfy_bottom:(CGFloat)tfy_bottom{
-    CGRect frame = self.frame;
-    frame.origin.y = tfy_bottom - frame.size.height;
-    self.frame = frame;
-}
--(CGFloat)tfy_bottom{
-    return self.frame.origin.y + self.frame.size.height;
-}
-#if TARGET_OS_IPHONE || TARGET_OS_TV
-
--(void)setTfy_cx:(CGFloat)tfy_cx{
-    CGPoint center = self.center;
-    center.x = tfy_cx;
-    self.center = center;
-}
--(CGFloat)tfy_cx{
-    return self.center.x;
-}
-
--(void)setTfy_cy:(CGFloat)tfy_cy{
-    CGPoint center = self.center;
-    center.y = tfy_cy;
-    self.center = center;
-}
-- (CGFloat)tfy_cy{
-    return self.center.y;
-}
-#endif
-
--(void)setTfy_xy:(CGPoint)tfy_xy{
-    CGRect rect = self.frame;
-    rect.origin = tfy_xy;
-    self.frame = rect;
-}
-- (CGPoint)tfy_xy{
-    return self.frame.origin;
-}
-
--(void)setTfy_se:(CGSize)tfy_se{
-    CGRect rect = self.frame;
-    rect.size = tfy_se;
-    self.frame = rect;
-}
-
--(CGSize)tfy_se{
-    return self.frame.size;
-}
-
-@end
-
-
 @implementation TFY_CLASS_VIEW (TFY_AutoLayout)
 
--(TFY_CLASS_VIEW *(^)(BOOL IsSafe))tfy_IsSafe{
+-(IsSafe)tfy_IsSafe{
     WS(mySelf);
     return ^(BOOL safe){
         [mySelf setSafe:safe];
@@ -225,31 +62,31 @@ static inline TFY_CLASS_VIEW * owningView(TFY_VIEW * view) {
     };
 }
 
--(TFY_CLASS_VIEW *(^)(void))tfy_LeseOrEqual{
+-(LessOrEqual)tfy_LeseOrEqual{
     WS(mySelf);
-    return ^(void){
+    return ^(){
         [mySelf tfy_HandleConstraintsRelation:NSLayoutRelationLessThanOrEqual];
         return mySelf;
     };
 }
 
--(TFY_CLASS_VIEW *(^)(void))tfy_GreaterOrEqual{
+-(GreaterOrEqual)tfy_GreaterOrEqual{
     WS(mySelf);
-    return ^(void){
+    return ^(){
         [mySelf tfy_HandleConstraintsRelation:NSLayoutRelationGreaterThanOrEqual];
         return mySelf;
     };
 }
 
--(TFY_CLASS_VIEW *(^)(void))tfy_ResetConstraint{
+-(ResetConstraintAttribute)tfy_ResetConstraint{
     WS(mySelf);
-    return ^(void){
+    return ^(){
         [mySelf tfy_ResetConstraints];
         return mySelf;
     };
 }
 
--(TFY_CLASS_VIEW *(^)(NSLayoutAttribute attributes,...))tfy_RemoveLayoutAttrs{
+-(RemoveConstraintAttribute)tfy_RemoveLayoutAttrs{
     WS(mySelf);
     return ^(NSLayoutAttribute attributes,...){
         va_list attrs;
@@ -266,7 +103,7 @@ static inline TFY_CLASS_VIEW * owningView(TFY_VIEW * view) {
     };
 }
 
--(TFY_CLASS_VIEW *(^)(TFY_CLASS_VIEW *view,NSLayoutAttribute attributes,...))tfy_RemoveFromLayoutAttrs{
+-(RemoveConstraintFromViewAttribute)tfy_RemoveFromLayoutAttrs{
     WS(mySelf);
     return ^(TFY_CLASS_VIEW *view,NSLayoutAttribute attributes,...){
         va_list attrs;
@@ -283,7 +120,7 @@ static inline TFY_CLASS_VIEW * owningView(TFY_VIEW * view) {
     };
 }
 
--(TFY_CLASS_VIEW *(^)(TFY_VIEW *toView,NSLayoutAttribute attributes,...))tfy_RemoveToLayoutAttrs{
+-(RemoveConstraintToViewAttribute)tfy_RemoveToLayoutAttrs{
     WS(mySelf);
     return ^(TFY_VIEW *toView,NSLayoutAttribute attributes,...){
         va_list attrs;
@@ -300,8 +137,7 @@ static inline TFY_CLASS_VIEW * owningView(TFY_VIEW * view) {
     };
 }
 
-
--(TFY_CLASS_VIEW *(^)(void))tfy_ClearLayoutAttr{
+-(ClearConstraintAttribute)tfy_ClearLayoutAttr{
     WS(mySelf);
     return ^(){
         [mySelf tfy_ClearLayoutAttrs];
@@ -309,39 +145,39 @@ static inline TFY_CLASS_VIEW * owningView(TFY_VIEW * view) {
     };
 }
 
--(TFY_CLASS_VIEW *(^)(void))tfy_PriorityLow{
+-(PriorityLow)tfy_PriorityLow{
     WS(mySelf);
-    return ^(void){
+    return ^(){
         [mySelf tfy_priorityLow];
         return mySelf;
     };
 }
 
--(TFY_CLASS_VIEW *(^)(void))tfy_PriorityHigh{
+-(PriorityHigh)tfy_PriorityHigh{
     WS(mySelf);
-    return ^(void){
+    return ^(){
         [mySelf tfy_priorityHigh];
         return mySelf;
     };
 }
 
--(TFY_CLASS_VIEW *(^)(void))tfy_PriorityRequired{
+-(PriorityRequired)tfy_PriorityRequired{
     WS(mySelf);
-    return ^(void){
+    return ^(){
         [mySelf tfy_priorityRequired];
         return mySelf;
     };
 }
 
--(TFY_CLASS_VIEW *(^)(void))tfy_PriorityFitting{
+-(PriorityFitting)tfy_PriorityFitting{
     WS(mySelf);
-    return ^(void){
+    return ^(){
         [mySelf tfy_priorityFitting];
         return mySelf;
     };
 }
 
--(TFY_CLASS_VIEW *(^)(CGFloat value))tfy_Priority{
+-(PriorityValue)tfy_Priority{
     WS(mySelf);
     return ^(CGFloat value){
         [mySelf tfy_priority:value];
@@ -349,31 +185,31 @@ static inline TFY_CLASS_VIEW * owningView(TFY_VIEW * view) {
     };
 }
 
--(TFY_CLASS_VIEW *(^)(TFY_LayoutPriority priority,TFY_ConstraintAxis axis))tfy_ContentCompressionResistancePriority{
+-(ContentCompressionResistancePriority)tfy_ContentCompressionResistancePriority{
     WS(mySelf);
     return ^(TFY_LayoutPriority priority,TFY_ConstraintAxis axis){
-        #if TARGET_OS_IPHONE || TARGET_OS_TV
+    #if TARGET_OS_IPHONE || TARGET_OS_TV
         [mySelf setContentCompressionResistancePriority:priority forAxis:axis];
-        #elif TARGET_OS_MAC
+    #elif TARGET_OS_MAC
         [mySelf setContentCompressionResistancePriority:priority forOrientation:axis];
-        #endif
+    #endif
         return mySelf;
     };
 }
 
--(TFY_CLASS_VIEW *(^)(TFY_LayoutPriority priority,TFY_ConstraintAxis axis))tfy_ContentHuggingPriority{
+-(ContentHuggingPriority)tfy_ContentHuggingPriority{
     WS(mySelf);
     return ^(TFY_LayoutPriority priority,TFY_ConstraintAxis axis){
-        #if TARGET_OS_IPHONE || TARGET_OS_TV
+    #if TARGET_OS_IPHONE || TARGET_OS_TV
         [mySelf setContentHuggingPriority:priority forAxis:axis];
-        #elif TARGET_OS_MAC
+    #elif TARGET_OS_MAC
         [mySelf setContentHuggingPriority:priority forOrientation:axis];
-        #endif
+    #endif
         return mySelf;
     };
 }
 
--(TFY_CLASS_VIEW *(^)(CGFloat space))tfy_LeftSpace{
+-(LeftSpace)tfy_LeftSpace{
     WS(mySelf);
     return ^(CGFloat space){
         [mySelf tfy_LeftSpace:space];
@@ -381,7 +217,7 @@ static inline TFY_CLASS_VIEW * owningView(TFY_VIEW * view) {
     };
 }
 
--(TFY_CLASS_VIEW *(^)(CGFloat space,TFY_VIEW *toView))tfy_LeftSpaceToView{
+-(LeftSpaceToView)tfy_LeftSpaceToView{
     WS(mySelf);
     return ^(CGFloat space,TFY_VIEW *toView){
         [mySelf tfy_LeftSpace:space toView:toView];
@@ -389,7 +225,7 @@ static inline TFY_CLASS_VIEW * owningView(TFY_VIEW * view) {
     };
 }
 
--(TFY_CLASS_VIEW *(^)(TFY_VIEW *view))tfy_LeftSpaceEqualView{
+-(LeftSpaceEqualView)tfy_LeftSpaceEqualView{
     WS(mySelf);
     return ^(TFY_VIEW *view){
         [mySelf tfy_LeftSpaceEqualView:view];
@@ -397,7 +233,7 @@ static inline TFY_CLASS_VIEW * owningView(TFY_VIEW * view) {
     };
 }
 
--(TFY_CLASS_VIEW *(^)(TFY_VIEW *view,CGFloat offset))tfy_LeftSpaceEqualViewOffset{
+-(LeftSpaceEqualViewOffset)tfy_LeftSpaceEqualViewOffset{
     WS(mySelf);
     return ^(TFY_VIEW *view,CGFloat offset){
         [mySelf tfy_LeftSpaceEqualView:view offset:offset];
@@ -405,8 +241,7 @@ static inline TFY_CLASS_VIEW * owningView(TFY_VIEW * view) {
     };
 }
 
-
--(TFY_CLASS_VIEW *(^)(CGFloat space))tfy_LeadingSpace{
+-(LeadingSpace)tfy_LeadingSpace{
     WS(mySelf);
     return ^(CGFloat space){
         [mySelf tfy_LeadingSpace:space];
@@ -414,7 +249,7 @@ static inline TFY_CLASS_VIEW * owningView(TFY_VIEW * view) {
     };
 }
 
--(TFY_CLASS_VIEW *(^)(CGFloat value,TFY_VIEW *toView))tfy_LeadingSpaceToView{
+-(LeadingSpaceToView)tfy_LeadingSpaceToView{
     WS(mySelf);
     return ^(CGFloat value,TFY_VIEW *toView){
         [mySelf tfy_LeadingSpace:value toView:toView];
@@ -422,7 +257,7 @@ static inline TFY_CLASS_VIEW * owningView(TFY_VIEW * view) {
     };
 }
 
--(TFY_CLASS_VIEW *(^)(TFY_VIEW *view))tfy_LeadingSpaceEqualView{
+-(LeadingSpaceEqualView)tfy_LeadingSpaceEqualView{
     WS(mySelf);
     return ^(TFY_VIEW *view){
         [mySelf tfy_LeadingSpaceEqualView:view];
@@ -430,7 +265,7 @@ static inline TFY_CLASS_VIEW * owningView(TFY_VIEW * view) {
     };
 }
 
--(TFY_CLASS_VIEW *(^)(TFY_VIEW *view,CGFloat offset))tfy_LeadingSpaceEqualViewOffset{
+-(LeadingSpaceEqualViewOffset)tfy_LeadingSpaceEqualViewOffset{
     WS(mySelf);
     return ^(TFY_VIEW *view,CGFloat offset){
         [mySelf tfy_LeadingSpaceEqualView:view offset:offset];
@@ -438,7 +273,7 @@ static inline TFY_CLASS_VIEW * owningView(TFY_VIEW * view) {
     };
 }
 
--(TFY_CLASS_VIEW *(^)(CGFloat space))tfy_TrailingSpace{
+-(TrailingSpace)tfy_TrailingSpace{
     WS(mySelf);
     return ^(CGFloat space){
         [mySelf tfy_TrailingSpace:space];
@@ -446,7 +281,7 @@ static inline TFY_CLASS_VIEW * owningView(TFY_VIEW * view) {
     };
 }
 
--(TFY_CLASS_VIEW *(^)(CGFloat value,TFY_VIEW *toView))tfy_TrailingSpaceToView{
+-(TrailingSpaceToView)tfy_TrailingSpaceToView{
     WS(mySelf);
     return ^(CGFloat value,TFY_VIEW *toView){
         [mySelf tfy_TrailingSpace:value toView:toView];
@@ -454,7 +289,7 @@ static inline TFY_CLASS_VIEW * owningView(TFY_VIEW * view) {
     };
 }
 
--(TFY_CLASS_VIEW *(^)(TFY_VIEW *view))tfy_TrailingSpaceEqualView{
+-(TrailingSpaceEqualView)tfy_TrailingSpaceEqualView{
     WS(mySelf);
     return ^(TFY_VIEW *view){
         [mySelf tfy_TrailingSpaceEqualView:view];
@@ -462,7 +297,7 @@ static inline TFY_CLASS_VIEW * owningView(TFY_VIEW * view) {
     };
 }
 
--(TFY_CLASS_VIEW *(^)(TFY_VIEW *view,CGFloat offset))tfy_TrailingSpaceEqualViewOffset{
+-(TrailingSpaceEqualViewOffset)tfy_TrailingSpaceEqualViewOffset{
     WS(mySelf);
     return ^(TFY_VIEW *view,CGFloat offset){
         [mySelf tfy_TrailingSpaceEqualView:view offset:offset];
@@ -470,10 +305,9 @@ static inline TFY_CLASS_VIEW * owningView(TFY_VIEW * view) {
     };
 }
 
-
 #if (__IPHONE_OS_VERSION_MIN_REQUIRED >= 80000) || (__TV_OS_VERSION_MIN_REQUIRED >= 9000) || (__MAC_OS_X_VERSION_MIN_REQUIRED >= 101100)
 
--(TFY_CLASS_VIEW *(^)(CGFloat space))tfy_FirstBaseLine{
+-(BaseLineSpace)tfy_FirstBaseLine{
     WS(mySelf);
     return ^(CGFloat space){
         [mySelf tfy_FirstBaseLine:space];
@@ -481,7 +315,7 @@ static inline TFY_CLASS_VIEW * owningView(TFY_VIEW * view) {
     };
 }
 
--(TFY_CLASS_VIEW *(^)(CGFloat value,TFY_VIEW *toView))tfy_FirstBaseLineToView{
+-(BaseLineSpaceToView)tfy_FirstBaseLineToView{
     WS(mySelf);
     return ^(CGFloat value,TFY_VIEW *toView){
         [mySelf tfy_FirstBaseLine:value toView:toView];
@@ -489,7 +323,7 @@ static inline TFY_CLASS_VIEW * owningView(TFY_VIEW * view) {
     };
 }
 
--(TFY_CLASS_VIEW *(^)(TFY_VIEW *view))tfy_FirstBaseLineEqualView{
+-(BaseLineSpaceEqualView)tfy_FirstBaseLineEqualView{
     WS(mySelf);
     return ^(TFY_VIEW *view){
         [mySelf tfy_FirstBaseLineEqualView:view];
@@ -497,7 +331,7 @@ static inline TFY_CLASS_VIEW * owningView(TFY_VIEW * view) {
     };
 }
 
--(TFY_CLASS_VIEW *(^)(TFY_VIEW *view,CGFloat offset))tfy_FirstBaseLineEqualViewOffset{
+-(BaseLineSpaceEqualViewOffset)tfy_FirstBaseLineEqualViewOffset{
     WS(mySelf);
     return ^(TFY_VIEW *view,CGFloat offset){
         [mySelf tfy_FirstBaseLineEqualView:view offset:offset];
@@ -507,7 +341,7 @@ static inline TFY_CLASS_VIEW * owningView(TFY_VIEW * view) {
 
 #endif
 
--(TFY_CLASS_VIEW *(^)(CGFloat space))tfy_LastBaseLine{
+-(BaseLineSpace)tfy_LastBaseLine{
     WS(mySelf);
     return ^(CGFloat space){
         [mySelf tfy_LastBaseLine:space];
@@ -515,7 +349,7 @@ static inline TFY_CLASS_VIEW * owningView(TFY_VIEW * view) {
     };
 }
 
--(TFY_CLASS_VIEW *(^)(CGFloat value,TFY_VIEW *toView))tfy_LastBaseLineToView{
+-(BaseLineSpaceToView)tfy_LastBaseLineToView{
     WS(mySelf);
     return ^(CGFloat value,TFY_VIEW *toView){
         [mySelf tfy_LastBaseLine:value toView:toView];
@@ -523,7 +357,7 @@ static inline TFY_CLASS_VIEW * owningView(TFY_VIEW * view) {
     };
 }
 
--(TFY_CLASS_VIEW *(^)(TFY_VIEW *view))tfy_LastBaseLineEqualView{
+-(BaseLineSpaceEqualView)tfy_LastBaseLineEqualView{
     WS(mySelf);
     return ^(TFY_VIEW *view){
         [mySelf tfy_LastBaseLineEqualView:view];
@@ -531,7 +365,7 @@ static inline TFY_CLASS_VIEW * owningView(TFY_VIEW * view) {
     };
 }
 
--(TFY_CLASS_VIEW *(^)(TFY_VIEW *view,CGFloat offset))tfy_LastBaseLineEqualViewOffset{
+-(BaseLineSpaceEqualViewOffset)tfy_LastBaseLineEqualViewOffset{
     WS(mySelf);
     return ^(TFY_VIEW *view,CGFloat offset){
         [mySelf tfy_LastBaseLineEqualView:view offset:offset];
@@ -539,7 +373,7 @@ static inline TFY_CLASS_VIEW * owningView(TFY_VIEW * view) {
     };
 }
 
--(TFY_CLASS_VIEW *(^)(CGFloat space))tfy_RightSpace{
+-(RightSpace)tfy_RightSpace{
     WS(mySelf);
     return ^(CGFloat space){
         [mySelf tfy_RightSpace:space];
@@ -547,7 +381,7 @@ static inline TFY_CLASS_VIEW * owningView(TFY_VIEW * view) {
     };
 }
 
--(TFY_CLASS_VIEW *(^)(CGFloat value,TFY_VIEW *toView))tfy_RightSpaceToView{
+-(RightSpaceToView)tfy_RightSpaceToView{
     WS(mySelf);
     return ^(CGFloat value,TFY_VIEW *toView){
         [mySelf tfy_RightSpace:value toView:toView];
@@ -555,7 +389,7 @@ static inline TFY_CLASS_VIEW * owningView(TFY_VIEW * view) {
     };
 }
 
--(TFY_CLASS_VIEW *(^)(TFY_VIEW *toView))tfy_RightSpaceEqualView{
+-(RightSpaceEqualView)tfy_RightSpaceEqualView{
     WS(mySelf);
     return ^(TFY_VIEW *toView){
         [mySelf tfy_RightSpaceEqualView:toView];
@@ -563,7 +397,7 @@ static inline TFY_CLASS_VIEW * owningView(TFY_VIEW * view) {
     };
 }
 
--(TFY_CLASS_VIEW *(^)(TFY_VIEW *toView,CGFloat offset))tfy_RightSpaceEqualViewOffset{
+-(RightSpaceEqualViewOffset)tfy_RightSpaceEqualViewOffset{
     WS(mySelf);
     return ^(TFY_VIEW *toView,CGFloat offset){
         [mySelf tfy_RightSpaceEqualView:toView offset:offset];
@@ -571,7 +405,7 @@ static inline TFY_CLASS_VIEW * owningView(TFY_VIEW * view) {
     };
 }
 
--(TFY_CLASS_VIEW *(^)(CGFloat space))tfy_TopSpace{
+-(TopSpace)tfy_TopSpace{
     WS(mySelf);
     return ^(CGFloat space){
         [mySelf tfy_TopSpace:space];
@@ -579,7 +413,7 @@ static inline TFY_CLASS_VIEW * owningView(TFY_VIEW * view) {
     };
 }
 
--(TFY_CLASS_VIEW *(^)(CGFloat value,TFY_VIEW *toView))tfy_TopSpaceToView{
+-(TopSpaceToView)tfy_TopSpaceToView{
     WS(mySelf);
     return ^(CGFloat value,TFY_VIEW *toView){
         [mySelf tfy_TopSpace:value toView:toView];
@@ -587,7 +421,7 @@ static inline TFY_CLASS_VIEW * owningView(TFY_VIEW * view) {
     };
 }
 
--(TFY_CLASS_VIEW *(^)(TFY_VIEW *view))tfy_TopSpaceEqualView{
+-(TopSpaceEqualView)tfy_TopSpaceEqualView{
     WS(mySelf);
     return ^(TFY_VIEW *view){
         [mySelf tfy_TopSpaceEqualView:view];
@@ -595,7 +429,7 @@ static inline TFY_CLASS_VIEW * owningView(TFY_VIEW * view) {
     };
 }
 
--(TFY_CLASS_VIEW *(^)(TFY_VIEW *view,CGFloat offset))tfy_TopSpaceEqualViewOffset{
+-(TopSpaceEqualViewOffset)tfy_TopSpaceEqualViewOffset{
     WS(mySelf);
     return ^(TFY_VIEW *view,CGFloat offset){
         [mySelf tfy_TopSpaceEqualView:view offset:offset];
@@ -603,7 +437,7 @@ static inline TFY_CLASS_VIEW * owningView(TFY_VIEW * view) {
     };
 }
 
--(TFY_CLASS_VIEW *(^)(CGFloat space))tfy_BottomSpace{
+-(BottomSpace)tfy_BottomSpace{
     WS(mySelf);
     return ^(CGFloat space){
         [mySelf tfy_BottomSpace:space];
@@ -611,7 +445,7 @@ static inline TFY_CLASS_VIEW * owningView(TFY_VIEW * view) {
     };
 }
 
--(TFY_CLASS_VIEW *(^)(CGFloat value,TFY_VIEW *toView))tfy_BottomSpaceToView{
+-(BottomSpaceToView)tfy_BottomSpaceToView{
     WS(mySelf);
     return ^(CGFloat value,TFY_VIEW *toView){
         [mySelf tfy_BottomSpace:value toView:toView];
@@ -619,7 +453,7 @@ static inline TFY_CLASS_VIEW * owningView(TFY_VIEW * view) {
     };
 }
 
--(TFY_CLASS_VIEW *(^)(TFY_VIEW *toView))tfy_BottomSpaceEqualView{
+-(BottomSpaceEqualView)tfy_BottomSpaceEqualView{
     WS(mySelf);
     return ^(TFY_VIEW *toView){
         [mySelf tfy_BottomSpaceEqualView:toView];
@@ -627,7 +461,7 @@ static inline TFY_CLASS_VIEW * owningView(TFY_VIEW * view) {
     };
 }
 
--(TFY_CLASS_VIEW *(^)(TFY_VIEW *toView,CGFloat offset))tfy_BottomSpaceEqualViewOffset{
+-(BottomSpaceEqualViewOffset)tfy_BottomSpaceEqualViewOffset{
     WS(mySelf);
     return ^(TFY_VIEW *toView,CGFloat offset){
         [mySelf tfy_BottomSpaceEqualView:toView offset:offset];
@@ -635,7 +469,7 @@ static inline TFY_CLASS_VIEW * owningView(TFY_VIEW * view) {
     };
 }
 
--(TFY_CLASS_VIEW *(^)(CGFloat value))tfy_Width{
+-(Width)tfy_Width{
     WS(mySelf);
     return ^(CGFloat value){
         [mySelf tfy_Width:value];
@@ -643,15 +477,15 @@ static inline TFY_CLASS_VIEW * owningView(TFY_VIEW * view) {
     };
 }
 
--(TFY_CLASS_VIEW *(^)(void))tfy_WidthAuto{
+-(WidthAuto)tfy_WidthAuto{
     WS(mySelf);
-    return ^(void){
+    return ^(){
         [mySelf tfy_AutoWidth];
         return mySelf;
     };
 }
 
--(TFY_CLASS_VIEW *(^)(TFY_VIEW *view))tfy_WidthEqualView{
+-(WidthEqualView)tfy_WidthEqualView{
     WS(mySelf);
     return ^(TFY_VIEW *view){
         [mySelf tfy_WidthEqualView:view];
@@ -659,7 +493,7 @@ static inline TFY_CLASS_VIEW * owningView(TFY_VIEW * view) {
     };
 }
 
--(TFY_CLASS_VIEW *(^)(TFY_VIEW *view,CGFloat value))tfy_WidthEqualViewRatio{
+-(WidthEqualViewRatio)tfy_WidthEqualViewRatio{
     WS(mySelf);
     return ^(TFY_VIEW *view,CGFloat value){
         [mySelf tfy_WidthEqualView:view ratio:value];
@@ -667,7 +501,7 @@ static inline TFY_CLASS_VIEW * owningView(TFY_VIEW * view) {
     };
 }
 
--(TFY_CLASS_VIEW *(^)(CGFloat value))tfy_WidthHeightRatio{
+-(WidthHeightRatio)tfy_WidthHeightRatio{
     WS(mySelf);
     return ^(CGFloat value){
         [mySelf tfy_WidthHeightRatio:value];
@@ -675,8 +509,7 @@ static inline TFY_CLASS_VIEW * owningView(TFY_VIEW * view) {
     };
 }
 
-
--(TFY_CLASS_VIEW *(^)(CGFloat value))tfy_Height{
+-(Height)tfy_Height{
     WS(mySelf);
     return ^(CGFloat value){
         [mySelf tfy_Height:value];
@@ -684,15 +517,15 @@ static inline TFY_CLASS_VIEW * owningView(TFY_VIEW * view) {
     };
 }
 
--(TFY_CLASS_VIEW *(^)(void))tfy_HeightAuto{
+-(HeightAuto)tfy_HeightAuto{
     WS(mySelf);
-    return ^(void){
+    return ^(){
         [mySelf tfy_AutoHeight];
         return mySelf;
     };
 }
 
--(TFY_CLASS_VIEW *(^)(TFY_VIEW *view))tfy_HeightEqualView{
+-(HeightEqualView)tfy_HeightEqualView{
     WS(mySelf);
     return ^(TFY_VIEW *view){
         [mySelf tfy_HeightEqualView:view];
@@ -700,8 +533,7 @@ static inline TFY_CLASS_VIEW * owningView(TFY_VIEW * view) {
     };
 }
 
-
--(TFY_CLASS_VIEW *(^)(TFY_VIEW *view,CGFloat value))tfy_HeightEqualViewRatio{
+-(HeightEqualViewRatio)tfy_HeightEqualViewRatio{
     WS(mySelf);
     return ^(TFY_VIEW *view,CGFloat value){
         [mySelf tfy_HeightEqualView:view ratio:value];
@@ -709,7 +541,7 @@ static inline TFY_CLASS_VIEW * owningView(TFY_VIEW * view) {
     };
 }
 
--(TFY_CLASS_VIEW *(^)(CGFloat value))tfy_HeightWidthRatio{
+-(HeightWidthRatio)tfy_HeightWidthRatio{
     WS(mySelf);
     return ^(CGFloat value){
         [mySelf tfy_HeightWidthRatio:value];
@@ -717,7 +549,7 @@ static inline TFY_CLASS_VIEW * owningView(TFY_VIEW * view) {
     };
 }
 
--(TFY_CLASS_VIEW *(^)(CGFloat value))tfy_CenterX{
+-(CenterX)tfy_CenterX{
     WS(mySelf);
     return ^(CGFloat value){
         [mySelf tfy_CenterX:value];
@@ -725,7 +557,7 @@ static inline TFY_CLASS_VIEW * owningView(TFY_VIEW * view) {
     };
 }
 
--(TFY_CLASS_VIEW *(^)(CGFloat value,TFY_VIEW *toView))tfy_CenterXToView{
+-(CenterXToView)tfy_CenterXToView{
     WS(mySelf);
     return ^(CGFloat value,TFY_VIEW *toView){
         [mySelf tfy_CenterX:value toView:toView];
@@ -733,7 +565,7 @@ static inline TFY_CLASS_VIEW * owningView(TFY_VIEW * view) {
     };
 }
 
--(TFY_CLASS_VIEW *(^)(CGFloat value))tfy_CenterY{
+-(CenterY)tfy_CenterY{
     WS(mySelf);
     return ^(CGFloat value){
         [mySelf tfy_CenterY:value];
@@ -741,7 +573,7 @@ static inline TFY_CLASS_VIEW * owningView(TFY_VIEW * view) {
     };
 }
 
--(TFY_CLASS_VIEW *(^)(CGFloat value,TFY_VIEW *toView))tfy_CenterYToView{
+-(CenterYToView)tfy_CenterYToView{
     WS(mySelf);
     return ^(CGFloat value,TFY_VIEW *toView){
         [mySelf tfy_CenterY:value toView:toView];
@@ -749,7 +581,7 @@ static inline TFY_CLASS_VIEW * owningView(TFY_VIEW * view) {
     };
 }
 
--(TFY_CLASS_VIEW *(^)(CGFloat x,CGFloat y))tfy_Center{
+-(Center)tfy_Center{
     WS(mySelf);
     return ^(CGFloat x,CGFloat y){
         [mySelf tfy_Center:CGPointMake(x, y)];
@@ -757,7 +589,7 @@ static inline TFY_CLASS_VIEW * owningView(TFY_VIEW * view) {
     };
 }
 
--(TFY_CLASS_VIEW *(^)(CGPoint center,TFY_VIEW *toView))tfy_CenterToView{
+-(CenterToView)tfy_CenterToView{
     WS(mySelf);
     return ^(CGPoint center,TFY_VIEW *toView){
         [mySelf tfy_Center:center toView:toView];
@@ -765,8 +597,7 @@ static inline TFY_CLASS_VIEW * owningView(TFY_VIEW * view) {
     };
 }
 
-
--(TFY_CLASS_VIEW *(^)(CGFloat width,CGFloat height))tfy_size{
+-(size)tfy_size{
     WS(mySelf);
     return ^(CGFloat width,CGFloat height){
         [mySelf tfy_Size:CGSizeMake(width, height)];
@@ -774,7 +605,7 @@ static inline TFY_CLASS_VIEW * owningView(TFY_VIEW * view) {
     };
 }
 
--(TFY_CLASS_VIEW *(^)(TFY_VIEW *view))tfy_SizeEqualView{
+-(SizeEqual)tfy_SizeEqualView{
     WS(mySelf);
     return ^(TFY_VIEW *view){
         [mySelf tfy_SizeEqualView:view];
@@ -782,7 +613,7 @@ static inline TFY_CLASS_VIEW * owningView(TFY_VIEW * view) {
     };
 }
 
--(TFY_CLASS_VIEW *(^)(TFY_VIEW *view))tfy_FrameEqualView{
+-(FrameEqual)tfy_FrameEqualView{
     WS(mySelf);
     return ^(TFY_VIEW *view){
         [mySelf tfy_FrameEqualView:view];
@@ -3286,10 +3117,10 @@ static const int BOTTOM_LINE_TAG = TOP_LINE_TAG + 1;
     _autoHeight = YES;
 }
 
--(TFY_CLASS_VIEW *(^)(void))tfy_HeightAuto{
+- (HeightAuto)tfy_HeightAuto {
     _autoHeight = YES;
     WS(mySelf);
-    return ^(void) {
+    return ^() {
         [super tfy_AutoHeight];
         return mySelf;
     };
@@ -3300,16 +3131,14 @@ static const int BOTTOM_LINE_TAG = TOP_LINE_TAG + 1;
     _autoWidth = YES;
 }
 
--(TFY_CLASS_VIEW *(^)(void))tfy_WidthAuto{
+- (WidthAuto)tfy_WidthAuto {
     _autoWidth = YES;
     WS(mySelf);
-    return ^(void) {
+    return ^() {
         [super tfy_AutoWidth];
         return mySelf;
     };
 }
-    
-
 
 - (NSArray<TFY_CLASS_VIEW *> *)tfy_Subviews {
     NSMutableArray * subViews = [NSMutableArray array];
