@@ -3,7 +3,7 @@
 Pod::Spec.new do |spec|
   spec.name         = "TFY_AutoLayout"
 
-  spec.version      = "2.4.8"
+  spec.version      = "2.5.0"
 
   spec.summary      = "简介高效，链式点语法布局工具"
 
@@ -19,8 +19,22 @@ Pod::Spec.new do |spec|
 
   spec.source       = { :git => "https://github.com/13662049573/TFY_AutoLayout.git", :tag => spec.version}
 
-  spec.source_files  = "TFY_AutoLayout/TFY_AutoLayout/**/*.{h,m}","TFY_AutoLayout/TFY_AutoLayout/TFY_AutoLayout.h"
-  
+  spec.source_files  = "TFY_AutoLayout/TFY_AutoLayout/TFY_AutoLayout.h"
+
+  spec.subspec 'Util' do |s|
+    s.source_files  = "TFY_AutoLayout/TFY_AutoLayout/Util/**/*.{h,m}"
+  end
+
+  spec.subspec 'IOS_Layout' do |s|
+    s.source_files  = "TFY_AutoLayout/TFY_AutoLayout/IOS_Layout/**/*.{h,m}"
+    s.dependency "TFY_AutoLayout/Util"
+  end
+
+  spec.subspec 'MAC_Layout' do |s|
+    s.source_files  = "TFY_AutoLayout/TFY_AutoLayout/MAC_Layout/**/*.{h,m}"
+    s.dependency "TFY_AutoLayout/Util"
+  end
+
   spec.frameworks    = "Foundation","UIKit"
 
   spec.xcconfig      = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include" }
