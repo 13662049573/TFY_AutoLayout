@@ -3,7 +3,7 @@
 Pod::Spec.new do |spec|
   spec.name         = "TFY_AutoLayout"
 
-  spec.version      = "2.5.0"
+  spec.version      = "2.5.2"
 
   spec.summary      = "简介高效，链式点语法布局工具"
 
