@@ -5,7 +5,7 @@
 //  Created by 田风有 on 2019/5/29.
 //  Copyright © 2019 恋机科技. All rights reserved.
 //
-
+#if TARGET_OS_IPHONE || TARGET_OS_TV
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
@@ -160,5 +160,5 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-
 NS_ASSUME_NONNULL_END
+#endif

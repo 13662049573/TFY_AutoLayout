@@ -6,8 +6,10 @@
 //  Copyright © 2019 恋机科技. All rights reserved.
 //  https://github.com/13662049573/TFY_AutoLayoutModelTools
 
-#import <UIKit/UIKit.h>
 #if TARGET_OS_IPHONE || TARGET_OS_TV
+
+#import <UIKit/UIKit.h>
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UITableViewCell (TFY_AutoHeightForCell)
