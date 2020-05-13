@@ -17,6 +17,8 @@ Pod::Spec.new do |spec|
 
   spec.platform     = :ios, "10.0"
 
+  spec.platform     = :osx, '10.10'
+
   spec.source       = { :git => "https://github.com/13662049573/TFY_AutoLayout.git", :tag => spec.version}
 
   spec.source_files  = "TFY_AutoLayout/TFY_AutoLayout/TFY_AutoLayout.h"
