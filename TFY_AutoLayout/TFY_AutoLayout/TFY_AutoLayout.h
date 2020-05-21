@@ -22,7 +22,6 @@ FOUNDATION_EXPORT const unsigned char TFY_AutoLayoutVersionString[];
 #import <TFY_AutoLayout/UIView+TFY_Frame.h>
 #import <TFY_AutoLayout/UIView+TFY_AutoLayout.h>
 #import <TFY_AutoLayout/UILayoutGuide+TFY_AutoLayout.h>
-#import <TFY_AutoLayout/UITableView+TFY_LayoutCell.h>
 #import <TFY_AutoLayout/UITableViewCell+TFY_AutoHeightForCell.h>
 
 #else
@@ -31,7 +30,6 @@ FOUNDATION_EXPORT const unsigned char TFY_AutoLayoutVersionString[];
 #import "UIView+TFY_Frame.h"
 #import "UIView+TFY_AutoLayout.h"
 #import "UILayoutGuide+TFY_AutoLayout.h"
-#import "UITableView+TFY_LayoutCell.h"
 #import "UITableViewCell+TFY_AutoHeightForCell.h"
 
 #endif

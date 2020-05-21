@@ -23,7 +23,6 @@
 		3655DB3F229551D7001CAE7B /* TFY_AutoLayoutUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3655DB3E229551D7001CAE7B /* TFY_AutoLayoutUITests.m */; };
 		565BDB07243585780096448A /* UIView+TFY_AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 565BDAFB243585780096448A /* UIView+TFY_AutoLayout.m */; };
 		565BDB08243585780096448A /* UITableViewCell+TFY_AutoHeightForCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 565BDAFF243585780096448A /* UITableViewCell+TFY_AutoHeightForCell.m */; };
-		565BDB09243585780096448A /* UITableView+TFY_LayoutCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 565BDB00243585780096448A /* UITableView+TFY_LayoutCell.m */; };
 		565BDB0A243585780096448A /* UIView+TFY_Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 565BDB01243585780096448A /* UIView+TFY_Frame.m */; };
 		565BDB0B243585780096448A /* UILayoutGuide+TFY_AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 565BDB05243585780096448A /* UILayoutGuide+TFY_AutoLayout.m */; };
 		565BDB0C243585780096448A /* CALayer+TFY_Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 565BDB06243585780096448A /* CALayer+TFY_Frame.m */; };
@@ -77,10 +76,8 @@
 		565BDAFA243585780096448A /* UITableViewCell+TFY_AutoHeightForCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+TFY_AutoHeightForCell.h"; sourceTree = "<group>"; };
 		565BDAFB243585780096448A /* UIView+TFY_AutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+TFY_AutoLayout.m"; sourceTree = "<group>"; };
 		565BDAFC243585780096448A /* UIView+TFY_Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+TFY_Frame.h"; sourceTree = "<group>"; };
-		565BDAFD243585780096448A /* UITableView+TFY_LayoutCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+TFY_LayoutCell.h"; sourceTree = "<group>"; };
 		565BDAFE243585780096448A /* UIView+TFY_AutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+TFY_AutoLayout.h"; sourceTree = "<group>"; };
 		565BDAFF243585780096448A /* UITableViewCell+TFY_AutoHeightForCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+TFY_AutoHeightForCell.m"; sourceTree = "<group>"; };
-		565BDB00243585780096448A /* UITableView+TFY_LayoutCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+TFY_LayoutCell.m"; sourceTree = "<group>"; };
 		565BDB01243585780096448A /* UIView+TFY_Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+TFY_Frame.m"; sourceTree = "<group>"; };
 		565BDB03243585780096448A /* UILayoutGuide+TFY_AutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILayoutGuide+TFY_AutoLayout.h"; sourceTree = "<group>"; };
 		565BDB04243585780096448A /* CALayer+TFY_Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+TFY_Frame.h"; sourceTree = "<group>"; };
@@ -245,8 +242,6 @@
 				565BDB01243585780096448A /* UIView+TFY_Frame.m */,
 				565BDAFE243585780096448A /* UIView+TFY_AutoLayout.h */,
 				565BDAFB243585780096448A /* UIView+TFY_AutoLayout.m */,
-				565BDAFD243585780096448A /* UITableView+TFY_LayoutCell.h */,
-				565BDB00243585780096448A /* UITableView+TFY_LayoutCell.m */,
 				565BDAFA243585780096448A /* UITableViewCell+TFY_AutoHeightForCell.h */,
 				565BDAFF243585780096448A /* UITableViewCell+TFY_AutoHeightForCell.m */,
 			);
@@ -395,7 +390,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				565BDB09243585780096448A /* UITableView+TFY_LayoutCell.m in Sources */,
 				3623B30D2297B9D5008874B3 /* OneModel.m in Sources */,
 				565BDB08243585780096448A /* UITableViewCell+TFY_AutoHeightForCell.m in Sources */,
 				3655DB1F229551D7001CAE7B /* ViewController.m in Sources */,
