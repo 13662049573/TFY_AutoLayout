@@ -8,8 +8,6 @@
 
 #import "TFY_AutoLayoutHerder.h"
 
-NS_ASSUME_NONNULL_BEGIN
-
 #if TARGET_OS_IPHONE || TARGET_OS_TV
 @interface IndexPathHeightCache : NSObject
 /**
@@ -160,8 +158,5 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL tfy_enforceFrameLayout;
 
 @end
-
-NS_ASSUME_NONNULL_END
-
 
 #endif
