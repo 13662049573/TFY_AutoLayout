@@ -31,13 +31,15 @@ Pod::Spec.new do |spec|
   end
 
   spec.subspec 'IOS_Layout' do |s|
-    s.source_files  = "TFY_AutoLayout/TFY_AutoLayout/IOS_Layout/**/*.{h,m}"
     s.dependency "TFY_AutoLayout/Util"
+    s.source_files  = "TFY_AutoLayout/TFY_AutoLayout/IOS_Layout/**/*.{h,m}"
+    
   end
 
   spec.subspec 'MAC_Layout' do |s|
-    s.source_files  = "TFY_AutoLayout/TFY_AutoLayout/MAC_Layout/**/*.{h,m}"
     s.dependency "TFY_AutoLayout/Util"
+    s.source_files  = "TFY_AutoLayout/TFY_AutoLayout/MAC_Layout/**/*.{h,m}"
+    
   end
 
   spec.ios.frameworks = 'Foundation', 'UIKit'
