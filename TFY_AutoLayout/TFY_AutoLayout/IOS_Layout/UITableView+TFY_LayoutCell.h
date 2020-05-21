@@ -8,10 +8,9 @@
 
 #import "TFY_AutoLayoutHerder.h"
 
-#if TARGET_OS_IPHONE || TARGET_OS_TV
-
 NS_ASSUME_NONNULL_BEGIN
 
+#if TARGET_OS_IPHONE || TARGET_OS_TV
 @interface IndexPathHeightCache : NSObject
 /**
  *  如果您正在使用索引路径驱动的高度缓存，则自动启用
@@ -163,4 +162,6 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
+
+
 #endif
