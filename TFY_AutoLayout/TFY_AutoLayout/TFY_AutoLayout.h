@@ -8,10 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-//! Project version number for WHC_AutoLayout.
 FOUNDATION_EXPORT double TFY_AutoLayoutVersionNumber;
 
-//! Project version string for WHC_AutoLayout.
 FOUNDATION_EXPORT const unsigned char TFY_AutoLayoutVersionString[];
 
 #define TFY_AutoLayoutKitRelease 0
