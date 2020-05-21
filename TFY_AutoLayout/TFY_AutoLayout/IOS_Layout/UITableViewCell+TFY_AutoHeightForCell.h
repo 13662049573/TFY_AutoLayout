@@ -10,8 +10,8 @@
 
 #import "TFY_AutoLayoutHerder.h"
 
-NS_ASSUME_NONNULL_BEGIN
 #if TARGET_OS_IPHONE || TARGET_OS_TV
+
 @interface UITableViewCell (TFY_AutoHeightForCell)
 /**
  *  cell最底部视图
@@ -44,5 +44,4 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-NS_ASSUME_NONNULL_END
 #endif
