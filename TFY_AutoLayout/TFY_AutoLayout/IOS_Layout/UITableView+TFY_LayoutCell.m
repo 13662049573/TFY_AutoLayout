@@ -5,9 +5,12 @@
 //  Created by 田风有 on 2019/5/29.
 //  Copyright © 2019 恋机科技. All rights reserved.
 //
-#if TARGET_OS_IPHONE || TARGET_OS_TV
+
 
 #import "UITableView+TFY_LayoutCell.h"
+
+#if TARGET_OS_IPHONE || TARGET_OS_TV
+
 #import <objc/runtime.h>
 
 typedef NSMutableArray<NSMutableArray<NSNumber *> *> IndexPathHeightsBySection;
