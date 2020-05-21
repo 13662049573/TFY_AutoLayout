@@ -24,11 +24,10 @@ Pod::Spec.new do |spec|
 
 
   spec.source_files  = "TFY_AutoLayout/TFY_AutoLayout/TFY_AutoLayout.h"
-  spec.public_header_files = 'TFY_AutoLayout/TFY_AutoLayout/TFY_AutoLayout.h'
+  
 
   spec.subspec 'Util' do |s|
-    s.source_files  = "TFY_AutoLayout/TFY_AutoLayout/Util/*.h"
-    s.public_header_files = 'TFY_AutoLayout/TFY_AutoLayout/Util/*.h'
+    s.source_files  = "TFY_AutoLayout/TFY_AutoLayout/Util/**/*.{h,m}"
   end
 
   spec.subspec 'IOS_Layout' do |s|
