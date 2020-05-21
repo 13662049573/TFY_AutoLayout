@@ -15,13 +15,17 @@ Pod::Spec.new do |spec|
 
   spec.author       = { "tianfengyou" => "420144542@qq.com" }
 
-  spec.platform     = :ios, "10.0"
+ 
+  spec.ios.deployment_target = '10.0' 
+  spec.osx.deployment_target = '10.10' 
+  spec.tvos.deployment_target = '10.0' 
 
-  spec.platform     = :osx, '10.10'
 
   spec.source       = { :git => "https://github.com/13662049573/TFY_AutoLayout.git", :tag => spec.version}
 
+
   spec.source_files  = "TFY_AutoLayout/TFY_AutoLayout/TFY_AutoLayout.h"
+
 
   spec.subspec 'Util' do |s|
     s.source_files  = "TFY_AutoLayout/TFY_AutoLayout/Util/**/*.{h,m}"
@@ -37,7 +41,9 @@ Pod::Spec.new do |spec|
     s.dependency "TFY_AutoLayout/Util"
   end
 
-  spec.frameworks    = "Foundation","UIKit"
+  spec.ios.frameworks = 'Foundation', 'UIKit'
+  spec.tvos.frameworks = 'Foundation', 'UIKit'
+  spec.osx.frameworks = 'Foundation', 'AppKit'
 
   spec.xcconfig      = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include" }
   
