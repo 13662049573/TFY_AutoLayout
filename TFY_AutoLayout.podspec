@@ -15,16 +15,16 @@ Pod::Spec.new do |spec|
 
   spec.author       = { "tianfengyou" => "420144542@qq.com" }
 
- 
-  spec.ios.deployment_target = '10.0' 
-  spec.osx.deployment_target = '10.10' 
-  spec.tvos.deployment_target = '10.0' 
-
   spec.source       = { :git => "https://github.com/13662049573/TFY_AutoLayout.git", :tag => spec.version}
 
 
   spec.source_files  = "TFY_AutoLayout/TFY_AutoLayout/TFY_AutoLayout.h"
   
+  
+  spec.ios.deployment_target = '10.0' 
+  spec.osx.deployment_target = '10.10' 
+  spec.tvos.deployment_target = '10.0' 
+
 
   spec.subspec 'Util' do |s|
     s.source_files  = "TFY_AutoLayout/TFY_AutoLayout/Util/**/*.{h,m}"

@@ -71,6 +71,7 @@
 		3655DB3A229551D7001CAE7B /* TFY_AutoLayoutUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TFY_AutoLayoutUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3655DB3E229551D7001CAE7B /* TFY_AutoLayoutUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TFY_AutoLayoutUITests.m; sourceTree = "<group>"; };
 		3655DB40229551D7001CAE7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		561FAB752477B24C00607346 /* TFY_AutoLayout.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TFY_AutoLayout.entitlements; sourceTree = "<group>"; };
 		565BDAF7243585780096448A /* TFY_AutoLayoutHerder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFY_AutoLayoutHerder.h; sourceTree = "<group>"; };
 		565BDAF8243585780096448A /* TFY_AutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFY_AutoLayout.h; sourceTree = "<group>"; };
 		565BDAFA243585780096448A /* UITableViewCell+TFY_AutoHeightForCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+TFY_AutoHeightForCell.h"; sourceTree = "<group>"; };
@@ -183,6 +184,7 @@
 		3655DB19229551D7001CAE7B /* TFY_AutoLayout */ = {
 			isa = PBXGroup;
 			children = (
+				561FAB752477B24C00607346 /* TFY_AutoLayout.entitlements */,
 				3623B3012297B992008874B3 /* Controller */,
 				3655DB4C22955219001CAE7B /* TFY_AutoLayout */,
 				3655DB1A229551D7001CAE7B /* AppDelegate.h */,
@@ -571,6 +573,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = TFY_AutoLayout/TFY_AutoLayout.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QH95759TSS;
 				INFOPLIST_FILE = TFY_AutoLayout/Info.plist;
@@ -581,7 +584,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.LianQianLianjiCompany.TFY-AutoLayout";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = 1;
+				SUPPORTS_MACCATALYST = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -589,6 +593,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = TFY_AutoLayout/TFY_AutoLayout.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QH95759TSS;
 				INFOPLIST_FILE = TFY_AutoLayout/Info.plist;
@@ -599,7 +604,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.LianQianLianjiCompany.TFY-AutoLayout";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = 1;
+				SUPPORTS_MACCATALYST = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
