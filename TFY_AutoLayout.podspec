@@ -3,7 +3,7 @@
 Pod::Spec.new do |spec|
   spec.name         = "TFY_AutoLayout"
 
-  spec.version      = "2.5.6"
+  spec.version      = "2.5.8"
 
   spec.summary      = "简介高效，链式点语法布局工具"
 
@@ -46,7 +46,7 @@ Pod::Spec.new do |spec|
   spec.tvos.frameworks = 'Foundation', 'UIKit'
   spec.osx.frameworks = 'Foundation', 'AppKit'
 
-  # spec.xcconfig      = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include" }
+  spec.xcconfig      = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include" }
   
   spec.requires_arc = true
 
