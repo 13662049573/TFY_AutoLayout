@@ -14,6 +14,8 @@
 @interface ViewController ()
 @property(nonatomic , strong)UIView *view1,*view2,*view3;
 @property(nonatomic , strong)UILabel *label,*label2,*label3;
+@property(nonatomic, strong) UIView *firstView;
+@property(nonatomic, strong) UIView *secondView;
 @end
 
 @implementation ViewController
@@ -106,6 +108,7 @@
     }];
     
     [stackView tfy_StartLayout];//使用这个最后需要调用这个方法才可以运行。
+    
 }
 
 -(void)btnClick:(UIButton *)sender{
@@ -130,5 +133,6 @@
     }
     
 }
+
 
 @end
