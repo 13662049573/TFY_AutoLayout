@@ -32,8 +32,8 @@
     self.label.numberOfLines=0;
     self.label.font = [UIFont systemFontOfSize:15];
     [self.view addSubview:self.label];
-    
 
+   
     self.label.tfy_LeftSpace(50).tfy_TopSpace(64).tfy_RightSpace(50).tfy_HeightAuto();
     
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
